@@ -1,4 +1,5 @@
 ﻿using System;
+using Serilog;
 
 namespace StoreUI
 {
@@ -7,9 +8,14 @@ namespace StoreUI
         static void Main(string[] args)
         {
 
-            
+             var log = new LoggerConfiguration()
+                //.WriteTo.Console()
+                .WriteTo.File("../logs/Main.txt",rollingInterval: RollingInterval.Day)
+                .CreateLogger();
             IMenu menuLogIn = new LogIn();
             menuLogIn.Start();
+
+            log.Information("entering the login menu");
             IMenu menuMain = new MainMenu();
             menuMain.Start();
         }
