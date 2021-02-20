@@ -1,5 +1,5 @@
 # kevinMurphy-code
-My playground Repo
+My training repo for projects and more!
 
 
 ## Contains
