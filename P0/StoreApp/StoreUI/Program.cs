@@ -1,5 +1,7 @@
 ﻿using System;
 using Serilog;
+using StoreBL;
+using StoreDL;
 
 namespace StoreUI
 {
@@ -12,7 +14,7 @@ namespace StoreUI
                 //.WriteTo.Console()
                 .WriteTo.File("../logs/Main.txt",rollingInterval: RollingInterval.Day)
                 .CreateLogger();
-            IMenu menuLogIn = new LogIn();
+            IMenu menuLogIn = new LogIn(new PartsBL(new StoreRepoFile()));
             menuLogIn.Start();
 
             log.Information("entering the login menu");
