@@ -6,14 +6,19 @@ namespace StoreDL
 {
     public class StoreRepoSC : IStoreRepository
     {
-        public Customer AddCustomer(Customer newCustomer)
+          public List<Customer> GetCustomer()
         {
-            throw new NotImplementedException();
+            return Storage.AllCustomers;
+        }
+        
+        
+        public Customer AddCustomer(Customer newCustomer) {
+            Storage.AllCustomers.Add(newCustomer);  
+            return newCustomer;
         }
 
-        public List<Customer> GetCustomer()
-        {
-            throw new NotImplementedException();
-        }
+      
+
+
     }
 }

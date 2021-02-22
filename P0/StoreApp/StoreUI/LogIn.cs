@@ -18,14 +18,17 @@ namespace StoreUI
             Console.WriteLine("Are you a new user?");
             string userIn = Console.ReadLine();
             if(userIn.Equals("y",StringComparison.OrdinalIgnoreCase)){
-                try
-                {
-                    CreateCustomer();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("invalid input." + e.Message);
-                    
+                while(true){
+                    try
+                    {
+                        CreateCustomer();
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Invalid input. Try another again!\n\n" + e.Message);
+                        
+                    }
                 }
                 
             }
@@ -50,6 +53,7 @@ namespace StoreUI
                 Console.WriteLine("Enter your what kind of car do you drive");
                 newCustomer.CarType = Enum.Parse<CarType>(Console.ReadLine());
                 Console.WriteLine($"Welcome {newCustomer.CustomerName}"); 
+                _storeBL.AddCustomer(newCustomer);
             }
     }
 }

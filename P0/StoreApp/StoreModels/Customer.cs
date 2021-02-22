@@ -24,7 +24,7 @@ namespace StoreModels
         private string phoneNumber;
         public string PhoneNumber
         {
-            get{return PhoneNumber;} 
+            get{return phoneNumber;} 
             set
             {
                 Match match = Regex.Match(value, @"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}");
