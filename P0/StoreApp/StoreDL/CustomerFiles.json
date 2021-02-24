@@ -1,1 +1,1 @@
-[{"CustomerName":"Spiderman","PhoneNumber":"(222)222-2222","CarType":1},{"CustomerName":"Kevin","PhoneNumber":"(111)111-1111","CarType":2}]
+[{"Customer":null,"Location":null,"Total":0},{"Customer":null,"Location":null,"Total":0},{"Customer":null,"Location":null,"Total":0},{"Customer":null,"Location":null,"Total":0},{"Customer":null,"Location":null,"Total":0},{"Customer":{"CustomerName":"Kevin","PhoneNumber":"(123)221-1230","CarType":2},"Location":{"Address":"www.OnlineStore.com","LocationName":"online store"},"Total":123.12}]

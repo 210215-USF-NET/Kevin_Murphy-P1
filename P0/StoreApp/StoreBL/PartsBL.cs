@@ -17,10 +17,22 @@ namespace StoreBL
             _repo.AddCustomer(newCustomer);
         }
 
+        public void AddOrder(Order newOrder)
+        {
+            _repo.AddOrder(newOrder);
+        }
+
         public List<Customer> GetCustomer()
         {
             return _repo.GetCustomer();
         }
+
+        public List<Order> GetOrder()
+        {
+            return _repo.GetOrder();
+        }
+
+    
     }
 
 }

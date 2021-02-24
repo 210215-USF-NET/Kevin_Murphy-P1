@@ -17,9 +17,7 @@ namespace StoreUI
             IMenu menuLogIn = new LogIn(new PartsBL(new StoreRepoFile()));
             menuLogIn.Start();
 
-            log.Information("entering the login menu");
-            IMenu menuMain = new MainMenu();
-            menuMain.Start();
+            
         }
     }
 }

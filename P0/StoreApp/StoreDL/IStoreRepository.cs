@@ -9,5 +9,9 @@ namespace StoreDL
         List<Customer> GetCustomer();
 
         Customer AddCustomer(Customer newCustomer);
+
+        Order AddOrder(Order newOrder);
+        List<Order> GetOrder();
+        
     }
 }

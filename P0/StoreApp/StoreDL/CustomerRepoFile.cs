@@ -19,6 +19,22 @@ namespace StoreDL
 
         }
 
+     
+        public List<Order> GetOrder()
+        {
+            try
+            {
+                jsonString = File.ReadAllText(filePath);
+            }
+            catch (Exception)
+            {
+                
+               return new List<Order>();
+            }
+         
+            return JsonSerializer.Deserialize<List<Order>>(jsonString);
+        }
+
         public List<Customer> GetCustomer()
         {
             try
@@ -30,7 +46,17 @@ namespace StoreDL
                 
                return new List<Customer>();
             }
+         
             return JsonSerializer.Deserialize<List<Customer>>(jsonString);
+        }
+
+        public Order AddOrder(Order newOrder)
+        {
+            List<Order> orderFromFile = GetOrder();
+            orderFromFile.Add(newOrder);
+            jsonString = JsonSerializer.Serialize(orderFromFile);
+            File.WriteAllText(filePath, jsonString);
+            return newOrder;
         }
     }
 }
