@@ -1,5 +1,19 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/csharp,vscode
+# ignore appsettings
+**/appsettings.development.json
+**/appsettings.staging.json
+**/appsettings.production.json
+**/appsettings.json
+
+# ignore connectionstrings
+**/connectionstrings.development.json
+**/connectionstrings.staging.json
+**/connectionstrings.production.json
+
+# ignore mailsettings
+**/mailsettings.development.json
+**/mailsettings.staging.json
+**/mailsettings.production.json# Created by https://www.toptal.com/developers/gitignore/api/csharp,vscode
 # Edit at https://www.toptal.com/developers/gitignore?templates=csharp,vscode
 
 ### Csharp ###

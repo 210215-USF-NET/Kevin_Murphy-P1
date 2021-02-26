@@ -13,5 +13,11 @@ namespace StoreDL
         Order AddOrder(Order newOrder);
         List<Order> GetOrder();
         
+        // Order AddProduct(Product newProduct);
+        // List<Product> GetProduct();
+
+        // Order AddItem(Item newItem);
+        // List<Item> GetItem();
+
     }
 }

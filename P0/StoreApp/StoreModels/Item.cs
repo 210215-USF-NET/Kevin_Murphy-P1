@@ -1,3 +1,4 @@
+using System;
 namespace StoreModels
 {
 
@@ -9,5 +10,8 @@ namespace StoreModels
         public Product Product { get; set; }
 
         public int Quantity { get; set; }
+
+        public override string ToString() => $"\n\t name: {this.Product}  \n\t  item name: {this.Quantity} ";
+
     }
 }

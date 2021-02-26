@@ -32,6 +32,26 @@ namespace StoreBL
             return _repo.GetOrder();
         }
 
+        //  public void AddProduct(Product newProduct)
+        // {
+        //     _repo.AddProduct(newProduct);
+        // }
+
+        // public List<Product> GetProduct()
+        // {
+        //     return _repo.GetProduct();
+        // }
+
+        //   public void AddItem(Item newItem)
+        // {
+        //     _repo.AddItem(newItem);
+        // }
+
+        // public List<Item> GetItem()
+        // {
+        //     return _repo.GetItem();
+        // }
+
     
     }
 

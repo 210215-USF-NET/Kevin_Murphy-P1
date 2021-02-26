@@ -57,7 +57,7 @@ namespace StoreUI
                 Console.WriteLine("Enter a number");
                 string userInput = Console.ReadLine();
                 Order newOrder = new Order();
-                
+                Product newProduct = new Product();
                 switch(userInput)
                 {
                     case "0":
@@ -109,6 +109,8 @@ namespace StoreUI
             {
                 Order newOrder = new Order();
                 Customer newCustomer = new Customer();
+                Product newProduct = new Product();
+                Item newItem = new Item();
                 Console.WriteLine("Enter your Name");
                 newCustomer.CustomerName = Console.ReadLine();
                 Console.WriteLine("Enter your Phone number(in form(xxx)xxx-xxxx)");
@@ -123,15 +125,22 @@ namespace StoreUI
                 newLocation.Address=("www.OnlineStore.com");
                 newOrder.Location =newLocation;
                 Console.WriteLine("Enter Order total");
-                newOrder.Total = Convert.ToDouble(Console.ReadLine());
-            
+                newProduct.ProductName ="Bumper";
+                newProduct.Price=(15.00);
+                newItem.Product =newProduct; 
+                newItem.Quantity = 5;
+                newOrder.Total = Convert.ToDouble(newProduct.Price*newItem.Quantity);
+
                 _storeBL.AddOrder(newOrder);
+                // _storeBL.AddItem(newItem);
+                // _storeBL.AddProduct(newProduct);
             }
         public void GetOrder()
         {
             foreach (var item in _storeBL.GetOrder())
             {
                 Console.WriteLine(item.ToString());
+              
             }
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();
