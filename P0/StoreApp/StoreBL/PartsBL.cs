@@ -26,33 +26,41 @@ namespace StoreBL
         {
             return _repo.GetCustomer();
         }
+        public List<Location> GetLocation()
+        {
+            return _repo.GetLocation();
+        }
+
+        
 
         public List<Order> GetOrder()
         {
             return _repo.GetOrder();
         }
 
-        //  public void AddProduct(Product newProduct)
-        // {
-        //     _repo.AddProduct(newProduct);
-        // }
-
-        // public List<Product> GetProduct()
-        // {
-        //     return _repo.GetProduct();
-        // }
-
-        //   public void AddItem(Item newItem)
-        // {
-        //     _repo.AddItem(newItem);
-        // }
-
-        // public List<Item> GetItem()
-        // {
-        //     return _repo.GetItem();
-        // }
-
     
+
+        public Customer GetCustomerByNumber(string number)
+        {
+            return _repo.GetCustomerByNumber(number);
+        }
+
+        public Location GetLocationByName(string name)
+        {
+            return _repo.GetLocationByName(name);
+        }
+
+        public List<Product> GetProduct()
+        {
+           return _repo.GetProduct();
+        }
+
+       
+
+        public Product GetProductByName(string name)
+        {
+            return _repo.GetProductByName(name);
+        }
     }
 
 }

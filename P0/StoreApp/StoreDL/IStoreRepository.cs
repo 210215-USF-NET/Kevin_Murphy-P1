@@ -12,7 +12,13 @@ namespace StoreDL
 
         Order AddOrder(Order newOrder);
         List<Order> GetOrder();
-        
+        List<Location> GetLocation();
+        List<Product> GetProduct();
+
+        Customer GetCustomerByNumber(string number);
+        Product GetProductByName(string name);
+        Location GetLocationByName(string name);
+
         // Order AddProduct(Product newProduct);
         // List<Product> GetProduct();
 

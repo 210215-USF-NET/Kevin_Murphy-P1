@@ -7,6 +7,7 @@ namespace StoreDL
 {
     public class StoreMapper : IMapper
     {
+        //get
         public Modle.Customer ParseCustomer(Entity.Customer customer)
         {
             return new Modle.Customer
@@ -17,6 +18,7 @@ namespace StoreDL
                 Id = customer.Id
             };
         }
+        //Set
 
         public Entity.Customer ParseCustomer(Modle.Customer customer)
         {
@@ -66,6 +68,27 @@ namespace StoreDL
                 Customer = order.Customer.Id,
                 Total = order.Total,
                 Id = (int)order.Id
+            };
+        }
+
+         public Modle.Location ParseLocation(Entity.Location location)
+        {
+            return new Modle.Location
+            {
+                
+                LocationName = location.LocationName,
+                Address = location.LocationAddress, 
+                Id = location.Id
+            };
+        }
+
+        public Modle.Product ParseProduct(Entity.Product product)
+        {
+            return new Modle.Product
+            {
+                ProductName = product.ProductName,
+                Price = product.ProductPrice, 
+                Id = product.Id
             };
         }
     }

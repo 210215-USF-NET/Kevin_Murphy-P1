@@ -6,14 +6,15 @@ namespace StoreBL
     {
         List<Customer> GetCustomer();
         List<Order> GetOrder();
+        List<Location> GetLocation();
+        List<Product> GetProduct();
         void AddCustomer(Customer newCustomer);
 
         void AddOrder(Order newOrder);
-
-        // List<Product> GetProduct();
-        // void AddProduct(Product newProduct);
-        // List<Item> GetItem();
-        // void AddItem(Item newItem);
+        Customer GetCustomerByNumber(string number);
+      
+        Location GetLocationByName(string name);
+        Product GetProductByName(string name);
 
     }
 }

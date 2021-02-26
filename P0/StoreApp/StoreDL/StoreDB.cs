@@ -23,9 +23,34 @@ namespace StoreDL
             throw new System.NotImplementedException();
         }
 
+        public Customer GetCustomerByNumber(string PhoneNumber)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Location> GetLocation()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Location GetLocationByName(string number)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Order> GetOrder()
         {
             throw new System.NotImplementedException();
         }
+
+        public List<Product> GetProduct()
+        {
+            throw new System.NotImplementedException();
+        }
+        public Product GetProductByName(string name)
+        {
+            throw new System.NotImplementedException();
+        }
+
     }
 }

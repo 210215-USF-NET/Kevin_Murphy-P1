@@ -5,12 +5,14 @@ namespace StoreDL
 {
     public interface IMapper
     {
-         Model.Customer ParseCustomer(Entity.Customer customer);
+        Model.Customer ParseCustomer(Entity.Customer customer);
+       
+        Entity.Customer ParseCustomer(Model.Customer customer);
+        Model.Location ParseLocation(Entity.Location location);
 
-         Entity.Customer ParseCustomer(Model.Customer customer);
+        Model.Product ParseProduct(Entity.Product product);
+        Model.Order ParseOrder(Entity.StoreOrder order);
 
-         Model.Order ParseOrder(Entity.StoreOrder order);
-
-         Entity.StoreOrder ParseOrder(Model.Order order);
+        Entity.StoreOrder ParseOrder(Model.Order order);
     }
 }

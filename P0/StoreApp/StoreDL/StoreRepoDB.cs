@@ -35,9 +35,38 @@ namespace StoreDL
             return _context.Customers.Select(x => _mapper.ParseCustomer(x)).ToList();
         }
 
+        public Customer GetCustomerByNumber(string number)
+        {
+            
+        {
+            return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.PhoneNumber ==number);
+        }
+        }
+
+        public List<Location> GetLocation()
+        {
+             return _context.Locations.Select(x => _mapper.ParseLocation(x)).ToList();
+        }
+
+        public Location GetLocationByName(string name)
+        {
+           return _context.Locations.AsNoTracking().Select(x => _mapper.ParseLocation(x)).ToList().FirstOrDefault(x => x.LocationName == name);
+        }
+
+        public Product GetProductByName(string name)
+        {
+           return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList().FirstOrDefault(x => x.ProductName == name);
+        }
+
         public List<Order> GetOrder()
         {
             return _context.StoreOrders.Select(x => _mapper.ParseOrder(x)).ToList();
+        }
+
+        public List<Product> GetProduct()
+        {
+            return _context.Products.Select(x => _mapper.ParseProduct(x)).ToList();
+
         }
     }
 }

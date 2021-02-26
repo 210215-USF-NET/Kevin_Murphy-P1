@@ -13,8 +13,7 @@ namespace StoreUI
         public void Goodbye(){
             Console.WriteLine("Thank you come again!");
         }
-        Customer newCustomer = new Customer();
-        Order newOrder = new Order();
+        public Customer currentCustomer = new Customer();
         public void Start()
         {
             
@@ -50,10 +49,12 @@ namespace StoreUI
             do{
                 //get the user name 
                 Console.WriteLine("How can we help you today?");
-                Console.WriteLine("[0]View your orders");
-                Console.WriteLine("[1]Make a new order");
-                Console.WriteLine("[2]View all locations");
-                Console.WriteLine("[3]Exit");
+                Console.WriteLine("[0] Create new customer");
+                Console.WriteLine("[1] Create a new order");
+                Console.WriteLine("[2] search for customer based on number");
+                Console.WriteLine("[3] search for location by name ");
+                Console.WriteLine("[4] search for product by name ");
+                Console.WriteLine("[5] Get all locations");
                 Console.WriteLine("Enter a number");
                 string userInput = Console.ReadLine();
                 Order newOrder = new Order();
@@ -61,8 +62,7 @@ namespace StoreUI
                 switch(userInput)
                 {
                     case "0":
-                        GetOrder();
-                        // Get the get the current customer users
+                        CreateCustomer();
                         break;
                     case "1":
                       while(true){
@@ -81,6 +81,22 @@ namespace StoreUI
                        
 
                     case "2":
+                        SearchForCustomer();
+                        Goodbye();
+                        stay =false;
+                        break;
+                    case "3":
+                        SearchForLocation();
+                        Goodbye();
+                        stay =false;
+                        break;
+                    case "4":
+                        SearchForProduct();
+                        Goodbye();
+                        stay =false;
+                        break;
+                    case "5":
+                        //GetLocations();
                         Goodbye();
                         stay =false;
                         break;
@@ -93,48 +109,77 @@ namespace StoreUI
 
            
         }
-            public void CreateCustomer()
+        public void CreateCustomer()
+        {
+            Customer newCustomer = new Customer();
+            Console.WriteLine("Enter your Name");
+            newCustomer.CustomerName=Console.ReadLine();
+            Console.WriteLine("Enter your Phone number(in form(xxx)xxx-xxxx)");
+            newCustomer.PhoneNumber=Console.ReadLine();
+            Console.WriteLine("Enter your what kind of car do you drive");
+            newCustomer.CarType = Enum.Parse<CarType>(Console.ReadLine());
+            Console.WriteLine($"Welcome {newCustomer.CustomerName}"); 
+            _storeBL.AddCustomer(newCustomer);
+            currentCustomer = newCustomer;
+        }
+        public void SearchForCustomer()
+        {
+            Console.WriteLine("Enter your Phone Number(in form(xxx)xxx-xxxx):");
+            Customer foundCustomer = _storeBL.GetCustomerByNumber(Console.ReadLine());
+            if(foundCustomer == null)
             {
-                Customer newCustomer = new Customer();
-                Console.WriteLine("Enter your Name");
-                newCustomer.CustomerName=Console.ReadLine();
-                Console.WriteLine("Enter your Phone number(in form(xxx)xxx-xxxx)");
-                newCustomer.PhoneNumber=Console.ReadLine();
-                Console.WriteLine("Enter your what kind of car do you drive");
-                newCustomer.CarType = Enum.Parse<CarType>(Console.ReadLine());
-                Console.WriteLine($"Welcome {newCustomer.CustomerName}"); 
-                _storeBL.AddCustomer(newCustomer);
+                Console.WriteLine("no such customer exists try making a new one");
             }
-         public void CreateOrder()
+            else
             {
-                Order newOrder = new Order();
-                Customer newCustomer = new Customer();
-                Product newProduct = new Product();
-                Item newItem = new Item();
-                Console.WriteLine("Enter your Name");
-                newCustomer.CustomerName = Console.ReadLine();
-                Console.WriteLine("Enter your Phone number(in form(xxx)xxx-xxxx)");
-                newCustomer.PhoneNumber = Console.ReadLine();
-                Console.WriteLine("Enter cartype");
-                newCustomer.CarType=Enum.Parse<CarType>(Console.ReadLine());
-                newOrder.Customer = newCustomer;
-                // Console.WriteLine("Enter Location name");
-                // newOrder.Location.LocationName = Console.ReadLine();
-                Location newLocation = new Location();
-                newLocation.LocationName ="online store";
-                newLocation.Address=("www.OnlineStore.com");
-                newOrder.Location =newLocation;
-                Console.WriteLine("Enter Order total");
-                newProduct.ProductName ="Bumper";
-                newProduct.Price=(15.00);
-                newItem.Product =newProduct; 
-                newItem.Quantity = 5;
-                newOrder.Total = Convert.ToDouble(newProduct.Price*newItem.Quantity);
+                Console.WriteLine(foundCustomer.ToString());
+            }
+        }
+        public Customer  SearchForCustomer(string number)
+        {
+            Console.WriteLine("Enter your Phone Number(in form(xxx)xxx-xxxx):");
+            Customer foundCustomer = _storeBL.GetCustomerByNumber(Console.ReadLine());
+            if(foundCustomer == null)
+            {
+                Console.WriteLine("no such customer exists try making a new one");
+            }
+            return foundCustomer;
+        }
+        public void SearchForLocation()
+        {
+            Console.WriteLine("Enter location Name");
+            Location foundLocation = _storeBL.GetLocationByName(Console.ReadLine());
+            
+            Console.WriteLine(foundLocation.ToString());
+        }
+        public Location SearchForLocation(string name)
+        {
+            Console.WriteLine("Enter location Name");
+            Location foundLocation = _storeBL.GetLocationByName(name);
+            
+            return foundLocation;
+        }
 
-                _storeBL.AddOrder(newOrder);
-                // _storeBL.AddItem(newItem);
-                // _storeBL.AddProduct(newProduct);
+         public void SearchForProduct()
+        {
+            Console.WriteLine("Enter item Name");
+            Product foundProduct = _storeBL.GetProductByName(Console.ReadLine());
+             if(foundProduct == null)
+            {
+                Console.WriteLine("no such Product exists try again");
             }
+            Console.WriteLine(foundProduct.ToString());
+        }
+
+        public void CreateOrder()
+        {
+            Order newOrder = new Order();
+            newOrder.Customer =  SearchForCustomer(Console.ReadLine());
+            newOrder.Location = SearchForLocation(Console.ReadLine());
+            Console.WriteLine("Enter Order total");
+            newOrder.Total = double.Parse(Console.ReadLine());
+            _storeBL.AddOrder(newOrder);
+        }
         public void GetOrder()
         {
             foreach (var item in _storeBL.GetOrder())
@@ -144,6 +189,12 @@ namespace StoreUI
             }
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();
+
+        }
+
+        public void GetLocation()
+        {
+
 
         }
     }
