@@ -36,7 +36,8 @@ create table inventories
 	id int identity primary key,
 	inventoryName varchar(20) not null,
 	quantity int not null,
-	location int references locations(id)
+	location int references locations(id),
+	product int references products(id)
 );
 
 create table storeOrders
@@ -73,7 +74,7 @@ insert into customers(customerName,phoneNumber,carType)values
 
 
 insert into products(productName,productDescription,productPrice)values
-('Bumper','This goes on your car',15);
+('Bumper','This goes on your car',15),('Head lights','They help you see in the dark',45);
 insert into locations(locationName,locationAddress)values
 ('Online store','www.store.com');
 
@@ -82,6 +83,9 @@ insert into storeOrders(total,customer,location)values
 
 insert into orderItems(quantity,storeOrder,product)values
 (2,3,1);
+
+insert into inventorys(inventoryName,quantity,location,product)values
+('Online Inventory',2,1,1);
 
 -- select * from inventories;
 -- select * from customers;

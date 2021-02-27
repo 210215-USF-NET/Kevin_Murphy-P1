@@ -87,6 +87,7 @@ namespace StoreDL
             return new Model.Product
             {
                 ProductName = product.ProductName,
+                ProductDescription=product.ProductDescription,
                 Price = product.ProductPrice, 
                 Id = product.Id
             };

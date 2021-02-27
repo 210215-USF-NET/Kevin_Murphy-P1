@@ -52,5 +52,9 @@ namespace StoreDL
             throw new System.NotImplementedException();
         }
 
+        public List<Product> GetProducts()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -41,20 +41,22 @@ namespace StoreUI
 
                 Console.WriteLine("Welcome back!");
                 // look up users based on numbers
-                
+                currentCustomer=SearchForCustomer(Console.ReadLine());
                  
             }
 
              Boolean stay = true;
             do{
                 //get the user name 
-                Console.WriteLine("How can we help you today?");
+                Console.WriteLine($"How can we help you today {currentCustomer.CustomerName} ?");
                 Console.WriteLine("[0] Create new customer");
+                Console.WriteLine("[.5] View customer info");
                 Console.WriteLine("[1] Create a new order");
                 Console.WriteLine("[2] search for customer based on number");
                 Console.WriteLine("[3] search for location by name ");
                 Console.WriteLine("[4] search for product by name ");
-                Console.WriteLine("[5] Get all locations");
+                Console.WriteLine("[5] Get all orders");
+                Console.WriteLine("[6] Get all products");
                 Console.WriteLine("Enter a number");
                 string userInput = Console.ReadLine();
                 Order newOrder = new Order();
@@ -63,6 +65,9 @@ namespace StoreUI
                 {
                     case "0":
                         CreateCustomer();
+                        break;
+                    case ".5":
+                        Console.WriteLine(currentCustomer.ToString());
                         break;
                     case "1":
                       while(true){
@@ -78,27 +83,21 @@ namespace StoreUI
                             }
                         }
                         break;
-                       
-
                     case "2":
                         SearchForCustomer();
-                        Goodbye();
-                        stay =false;
                         break;
                     case "3":
                         SearchForLocation();
-                        Goodbye();
-                        stay =false;
                         break;
                     case "4":
                         SearchForProduct();
-                        Goodbye();
-                        stay =false;
                         break;
+                  
                     case "5":
-                        //GetLocations();
-                        Goodbye();
-                        stay =false;
+                        GetOrder();
+                        break; 
+                     case "6":
+                        GetProducts();
                         break;
                     default:
                         Console.WriteLine("Invalid input");
@@ -174,7 +173,7 @@ namespace StoreUI
         public void CreateOrder()
         {
             Order newOrder = new Order();
-            newOrder.Customer =  SearchForCustomer(Console.ReadLine());
+            newOrder.Customer =  currentCustomer;
             newOrder.Location = SearchForLocation(Console.ReadLine());
             Console.WriteLine("Enter Order total");
             newOrder.Total = double.Parse(Console.ReadLine());
@@ -192,10 +191,14 @@ namespace StoreUI
 
         }
 
-        public void GetLocation()
+        public void GetProducts()
         {
-
-
+            foreach(var item in _storeBL.GetProducts())
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("Press any key to continue");
+            Console.ReadLine();
         }
     }
 }

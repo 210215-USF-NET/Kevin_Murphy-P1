@@ -9,6 +9,7 @@ namespace StoreDL.Entities
     {
         public Product()
         {
+            Inventories = new HashSet<Inventory>();
             OrderItems = new HashSet<OrderItem>();
         }
 
@@ -17,6 +18,7 @@ namespace StoreDL.Entities
         public string ProductDescription { get; set; }
         public double ProductPrice { get; set; }
 
+        public virtual ICollection<Inventory> Inventories { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

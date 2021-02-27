@@ -8,6 +8,9 @@ namespace StoreBL
         List<Order> GetOrder();
         List<Location> GetLocation();
         List<Product> GetProduct();
+
+        List<Product> GetProducts();
+
         void AddCustomer(Customer newCustomer);
 
         void AddOrder(Order newOrder);
@@ -15,6 +18,7 @@ namespace StoreBL
       
         Location GetLocationByName(string name);
         Product GetProductByName(string name);
+
 
     }
 }
