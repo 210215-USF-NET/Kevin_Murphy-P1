@@ -67,6 +67,7 @@ namespace StoreDL
             {
                 Customer = order.Customer.Id,
                 Total = order.Total,
+                Location = order.Location.Id,
                 Id = (int)order.Id
             };
         }

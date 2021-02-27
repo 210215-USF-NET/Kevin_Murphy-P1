@@ -182,7 +182,7 @@ namespace StoreUI
         {
             Order newOrder = new Order();
             newOrder.Customer =  currentCustomer;
-            newOrder.Location = SearchForLocation(Console.ReadLine());
+            newOrder.Location = currentLocation;
             Console.WriteLine("Enter Order total");
             newOrder.Total = double.Parse(Console.ReadLine());
             _storeBL.AddOrder(newOrder);
