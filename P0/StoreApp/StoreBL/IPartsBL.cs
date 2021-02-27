@@ -10,6 +10,7 @@ namespace StoreBL
         List<Product> GetProduct();
 
         List<Product> GetProducts();
+         List<Location> GetLocations();
 
         void AddCustomer(Customer newCustomer);
 

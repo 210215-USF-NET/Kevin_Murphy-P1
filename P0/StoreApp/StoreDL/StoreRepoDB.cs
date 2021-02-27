@@ -73,5 +73,10 @@ namespace StoreDL
         {
             return _context.Products.Select(x => _mapper.ParseProduct(x)).ToList();
         }
+
+         public List<Location> GetLocations()
+        {
+            return _context.Locations.Select(x => _mapper.ParseLocation(x)).ToList();
+        }
     }
 }

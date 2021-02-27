@@ -14,6 +14,7 @@ namespace StoreUI
             Console.WriteLine("Thank you come again!");
         }
         public Customer currentCustomer = new Customer();
+        public Location currentLocation = new Location();
         public void Start()
         {
             
@@ -57,6 +58,8 @@ namespace StoreUI
                 Console.WriteLine("[4] search for product by name ");
                 Console.WriteLine("[5] Get all orders");
                 Console.WriteLine("[6] Get all products");
+                Console.WriteLine("[7] Get all locations");
+                Console.WriteLine("[8] Enter a specific store");
                 Console.WriteLine("Enter a number");
                 string userInput = Console.ReadLine();
                 Order newOrder = new Order();
@@ -79,7 +82,6 @@ namespace StoreUI
                             catch (Exception e)
                             {
                                 Console.WriteLine("Invalid input. Try another again!\n\n" + e.Message);
-                                
                             }
                         }
                         break;
@@ -98,6 +100,12 @@ namespace StoreUI
                         break; 
                      case "6":
                         GetProducts();
+                        break;
+                    case "7":
+                        GetLocations();
+                        break;
+                    case "8":
+                        currentLocation= SearchForLocation(Console.ReadLine());
                         break;
                     default:
                         Console.WriteLine("Invalid input");
@@ -200,5 +208,15 @@ namespace StoreUI
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();
         }
+        public void GetLocations()
+        {
+            foreach(var item in _storeBL.GetLocations())
+            {
+                Console.WriteLine(item.ToString());
+            }
+            Console.WriteLine("Press any key to continue");
+            Console.ReadLine();
+        }
+        
     }
 }

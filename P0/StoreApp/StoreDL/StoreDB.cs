@@ -38,6 +38,11 @@ namespace StoreDL
             throw new System.NotImplementedException();
         }
 
+        public List<Product> GetLocations()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Order> GetOrder()
         {
             throw new System.NotImplementedException();
@@ -53,6 +58,11 @@ namespace StoreDL
         }
 
         public List<Product> GetProducts()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        List<Location> IStoreRepository.GetLocations()
         {
             throw new System.NotImplementedException();
         }

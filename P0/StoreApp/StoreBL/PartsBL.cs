@@ -66,6 +66,11 @@ namespace StoreBL
         {
             return _repo.GetProducts();
         }
+
+        public List<Location> GetLocations()
+        {
+            return _repo.GetLocations();
+        }
     }
 
 }
