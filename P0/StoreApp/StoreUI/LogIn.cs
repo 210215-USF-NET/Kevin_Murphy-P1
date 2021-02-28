@@ -38,17 +38,31 @@ namespace StoreUI
                 }
                 
             }
-            else{
-
-                Console.WriteLine("Welcome back!");
-                // look up users based on numbers
-                currentCustomer=SearchForCustomer(Console.ReadLine());
+            else
+            {
+                while(true){
+                    try
+                    {
+                        currentCustomer=SearchForCustomer(Console.ReadLine());
+                        
+               
+                        break;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("Invalid input. Try another again!\n\n" + e.Message);
+                        
+                    }
+                }
+               Console.WriteLine("Welcome back!");
+                
                  
             }
 
              Boolean stay = true;
             do{
                 //get the user name 
+                
                 Console.WriteLine($"How can we help you today {currentCustomer.CustomerName} ?");
                 Console.WriteLine("[0] Create new customer");
                 Console.WriteLine("[.5] View customer info");
@@ -60,6 +74,7 @@ namespace StoreUI
                 Console.WriteLine("[6] Get all products");
                 Console.WriteLine("[7] Get all locations");
                 Console.WriteLine("[8] Enter a specific store");
+                Console.WriteLine("[9] Check what store I am at");
                 Console.WriteLine("Enter a number");
                 string userInput = Console.ReadLine();
                 Order newOrder = new Order();
@@ -105,13 +120,23 @@ namespace StoreUI
                         GetLocations();
                         break;
                     case "8":
+                        Console.WriteLine("Enter Location Name");
                         currentLocation= SearchForLocation(Console.ReadLine());
+                        break;
+                    case "9":
+                        if(currentLocation.Id == null)
+                            Console.WriteLine("\nYou currently are not at a store\n");
+                        else
+                        {
+                            Console.WriteLine($"\n You are at the {currentLocation.LocationName}\n");
+                        }
                         break;
                     default:
                         Console.WriteLine("Invalid input");
                         break;
                 }
             }while(stay);
+
     
 
            

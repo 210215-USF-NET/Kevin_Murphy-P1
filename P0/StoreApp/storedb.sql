@@ -87,7 +87,7 @@ insert into orderItems(quantity,storeOrder,product)values
 insert into inventorys(inventoryName,quantity,location,product)values
 ('Online Inventory',2,1,1);
 
--- select * from inventories;
+-- select * from inventorys;
 -- select * from customers;
 -- select * from carTypes;
 -- select * from storeOrders;

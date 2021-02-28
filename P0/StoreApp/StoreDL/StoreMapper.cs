@@ -2,12 +2,14 @@ using Model = StoreModels;
 using Entity = StoreDL.Entities;
 using StoreModels;
 using StoreDL.Entities;
+using System;
 
 namespace StoreDL
 {
     public class StoreMapper : IMapper
     {
         //get
+          
         public Model.Customer ParseCustomer(Entity.Customer customer)
         {
             return new Model.Customer
@@ -15,11 +17,11 @@ namespace StoreDL
                 CustomerName = customer.CustomerName,
                 PhoneNumber = customer.PhoneNumber,
                 CarType = (Model.CarType)customer.CarType,
-                Id = customer.Id
+                Id = (int)customer.Id
             };
         }
+        
         //Set
-
         public Entity.Customer ParseCustomer(Model.Customer customer)
         {
             if(customer.Id ==null )
@@ -29,6 +31,7 @@ namespace StoreDL
                     CustomerName = customer.CustomerName,
                     PhoneNumber = customer.PhoneNumber,
                     CarType = (int)customer.CarType
+                   
                 };
             }  
             return new Entity.Customer
@@ -36,29 +39,34 @@ namespace StoreDL
                 CustomerName = customer.CustomerName,
                 PhoneNumber = customer.PhoneNumber,
                 CarType = (int)customer.CarType,
-            };
-        }
-
-        //get order
-        public Order ParseOrder(StoreOrder order)
-        {
-            return new Order
-            {
-                
-                Total = order.Total,
-                Id = order.Id
+                Id = (int)customer.Id
             };
         }
         
+        //get order
+        public Order ParseOrder(Entity.StoreOrder order)
+        {
+            
+            return new Model.Order
+            {
+                // Customer = ParseCustomer(order.Customer),
+                // Location = ParseLocation(order.Location),
+                Total = order.Total,
+                Id = (int)order.Id
+            };
+        }
+
+
 
         //to DB(createorder)
-        public StoreOrder ParseOrder(Order order)
+        public Entity.StoreOrder ParseOrder(Model.Order order)
         {
                if(order.Id ==null )
             {
                 return new Entity.StoreOrder
                 {
-                    Customer = order.Customer.Id,
+                    Customer =order.Customer.Id,
+                    Location = order.Location.Id,
                     Total = order.Total 
                     
                 };
@@ -79,10 +87,11 @@ namespace StoreDL
                 
                 LocationName = location.LocationName,
                 Address = location.LocationAddress, 
+                //Product = ParseProduct(location.Product) ,
                 Id = location.Id
             };
         }
-
+        //get product from db and map to model
         public Model.Product ParseProduct(Entity.Product product)
         {
             return new Model.Product
@@ -90,7 +99,7 @@ namespace StoreDL
                 ProductName = product.ProductName,
                 ProductDescription=product.ProductDescription,
                 Price = product.ProductPrice, 
-                Id = product.Id
+                Id = (int)product.Id
             };
         }
     }

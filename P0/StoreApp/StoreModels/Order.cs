@@ -14,6 +14,6 @@ namespace StoreModels
         public Item Item {get;set;}
         public int? Id { get; set; }
 
-        public override string ToString() =>  /*{this.Customer.ToString()}*/ $"\n\t location name: {this.Location.ToString()} \n\t Item name: {this.Item.ToString()} \n\t Total: {this.Total}";
+        public override string ToString() =>  $"{this.Customer.ToString()}";// $"\n\t location name: {this.Location.ToString()} \n\t Item name: {this.Item.ToString()} \n\t Total: {this.Total}";
     }
 }

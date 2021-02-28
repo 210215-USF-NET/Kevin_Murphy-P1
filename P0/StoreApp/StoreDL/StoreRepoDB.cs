@@ -32,7 +32,7 @@ namespace StoreDL
 
         public List<Customer> GetCustomer()
         {
-            return _context.Customers.Select(x => _mapper.ParseCustomer(x)).ToList();
+            return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList();
         }
 
         public Customer GetCustomerByNumber(string number)
@@ -45,7 +45,7 @@ namespace StoreDL
 
         public List<Location> GetLocation()
         {
-             return _context.Locations.Select(x => _mapper.ParseLocation(x)).ToList();
+             return _context.Locations.AsNoTracking().Include("Product").Select(x => _mapper.ParseLocation(x)).ToList();
         }
 
         public Location GetLocationByName(string name)
@@ -60,12 +60,13 @@ namespace StoreDL
 
         public List<Order> GetOrder()
         {
-            return _context.StoreOrders.Select(x => _mapper.ParseOrder(x)).ToList();
+            return _context.StoreOrders.AsNoTracking().Select(x => _mapper.ParseOrder(x)).ToList();
+            
         }
 
         public List<Product> GetProduct()
         {
-            return _context.Products.Select(x => _mapper.ParseProduct(x)).ToList();
+            return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList();
 
         }
 
@@ -76,7 +77,7 @@ namespace StoreDL
 
          public List<Location> GetLocations()
         {
-            return _context.Locations.Select(x => _mapper.ParseLocation(x)).ToList();
+            return _context.Locations.AsNoTracking().Select(x => _mapper.ParseLocation(x)).ToList();
         }
     }
 }
