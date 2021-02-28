@@ -37,10 +37,7 @@ namespace StoreDL
 
         public Customer GetCustomerByNumber(string number)
         {
-            
-        {
             return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.PhoneNumber ==number);
-        }
         }
 
         public List<Location> GetLocation()

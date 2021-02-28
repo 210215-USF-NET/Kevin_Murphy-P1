@@ -62,7 +62,7 @@ namespace StoreUI
              Boolean stay = true;
             do{
                 //get the user name 
-                
+                GetOrder();
                 Console.WriteLine($"How can we help you today {currentCustomer.CustomerName} ?");
                 Console.WriteLine("[0] Create new customer");
                 Console.WriteLine("[.5] View customer info");
@@ -216,7 +216,8 @@ namespace StoreUI
         {
             foreach (var item in _storeBL.GetOrder())
             {
-                Console.WriteLine(item.ToString());
+                if(item.Customer.PhoneNumber == currentCustomer.PhoneNumber)
+                    Console.WriteLine(item.ToString());
               
             }
             Console.WriteLine("Press any key to continue");

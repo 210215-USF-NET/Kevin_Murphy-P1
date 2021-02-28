@@ -8,10 +8,30 @@ namespace StoreDL
 {
     public class StoreMapper : IMapper
     {
+        Model.Customer customerTemp = new Model.Customer();
+
+         public Model.Customer ParseCustomer(int? customer)
+        {
+            
+            return new Model.Customer
+            {
+                CustomerName = customerTemp.CustomerName,
+                PhoneNumber = customerTemp.PhoneNumber,
+                CarType = (Model.CarType)customerTemp.CarType,
+                Id = (int)customerTemp.Id
+            };
+        }
         //get
           
         public Model.Customer ParseCustomer(Entity.Customer customer)
         {
+            customerTemp = new Model.Customer
+            {
+                CustomerName = customer.CustomerName,
+                PhoneNumber = customer.PhoneNumber,
+                CarType = (Model.CarType)customer.CarType,
+                Id = (int)customer.Id
+            };
             return new Model.Customer
             {
                 CustomerName = customer.CustomerName,
@@ -45,12 +65,11 @@ namespace StoreDL
         
         //get order
         public Order ParseOrder(Entity.StoreOrder order)
-        {
-            
+        { 
             return new Model.Order
             {
-                // Customer = ParseCustomer(order.Customer),
-                // Location = ParseLocation(order.Location),
+                Customer=ParseCustomer(order.Customer),
+                Location = ParseLocation(order.Location),
                 Total = order.Total,
                 Id = (int)order.Id
             };
@@ -79,7 +98,18 @@ namespace StoreDL
                 Id = (int)order.Id
             };
         }
-
+        public Model.Location locationTemp = new Model.Location();
+        public Model.Location ParseLocation(int? location)
+        {
+            return new Model.Location
+            {
+                
+                LocationName = locationTemp.LocationName,
+                Address = locationTemp.Address, 
+                //Product = ParseProduct(location.Product),
+                Id = locationTemp.Id
+            };
+        }
          public Model.Location ParseLocation(Entity.Location location)
         {
             return new Model.Location
@@ -87,7 +117,7 @@ namespace StoreDL
                 
                 LocationName = location.LocationName,
                 Address = location.LocationAddress, 
-                //Product = ParseProduct(location.Product) ,
+                //Product = ParseProduct(location.Product),
                 Id = location.Id
             };
         }
