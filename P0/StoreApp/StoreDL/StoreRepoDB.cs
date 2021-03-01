@@ -75,6 +75,11 @@ namespace StoreDL
             return _context.StoreOrders.AsNoTracking().Select(x => _mapper.ParseOrder(x)).ToList();
     
         }
+        public List<Item> GetLocationItems()
+        {
+            return _context.Inventories.AsNoTracking().Select(x => _mapper.ParseItem(x)).ToList();
+    
+        }
         // public List<Order> GetOrderFK(int? customer)
         // {
         //     return _context.StoreOrders.AsNoTracking().Select(x => _mapper.ParseOrderFK(x)).ToList().All(x => x.CFK == customer);
@@ -95,6 +100,11 @@ namespace StoreDL
          public List<Location> GetLocations()
         {
             return _context.Locations.AsNoTracking().Select(x => _mapper.ParseLocation(x)).ToList();
+        }
+
+        public Product GetProductById(int? Id)
+        {
+            return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList().FirstOrDefault(x => x.Id == Id);
         }
     }
 }

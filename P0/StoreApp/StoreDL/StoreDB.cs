@@ -43,6 +43,11 @@ namespace StoreDL
             throw new System.NotImplementedException();
         }
 
+        public List<Item> GetLocationItems()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Product> GetLocations()
         {
             throw new System.NotImplementedException();
@@ -57,6 +62,12 @@ namespace StoreDL
         {
             throw new System.NotImplementedException();
         }
+
+        public Product GetProductById(int? Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Product GetProductByName(string name)
         {
             throw new System.NotImplementedException();

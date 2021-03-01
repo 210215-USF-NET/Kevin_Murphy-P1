@@ -62,19 +62,19 @@ namespace StoreUI
              Boolean stay = true;
             do{
                 //get the user name 
-                GetOrder();
                 Console.WriteLine($"How can we help you today {currentCustomer.CustomerName} ?");
                 Console.WriteLine("[0] Create new customer");
                 Console.WriteLine("[.5] View customer info");
                 Console.WriteLine("[1] Create a new order");
-                Console.WriteLine("[2] search for customer based on number");
+                Console.WriteLine("[2] Switch user (Using PhoneNumber)");
                 Console.WriteLine("[3] search for location by name ");
                 Console.WriteLine("[4] search for product by name ");
-                Console.WriteLine("[5] Get all orders");
+                Console.WriteLine("[5] Get all your orders");
                 Console.WriteLine("[6] Get all products");
                 Console.WriteLine("[7] Get all locations");
                 Console.WriteLine("[8] Enter a specific store");
                 Console.WriteLine("[9] Check what store I am at");
+                Console.WriteLine("[10] Get all Products for your current location");
                 Console.WriteLine("Enter a number");
                 string userInput = Console.ReadLine();
                 Order newOrder = new Order();
@@ -132,6 +132,9 @@ namespace StoreUI
                             Console.WriteLine($"\n You are at the {currentLocation.LocationName}\n");
                         }
                         break;
+                    case "10":
+                        GetLocationItems();
+                        break;
                     default:
                         Console.WriteLine("Invalid input");
                         break;
@@ -187,7 +190,7 @@ namespace StoreUI
         }
         public Location SearchForLocation(string name)
         {
-            Console.WriteLine("Enter location Name");
+            // Console.WriteLine("Enter location Name");
             Location foundLocation = _storeBL.GetLocationByName(name);
             
             return foundLocation;
@@ -201,12 +204,27 @@ namespace StoreUI
             {
                 Console.WriteLine("no such Product exists try again");
             }
+            I.Product = foundProduct;
+
             Console.WriteLine(foundProduct.ToString());
         }
-
+        // public Product SearchForProduct(string name)
+        // {
+        //     Product foundProduct = _storeBL.GetProductByName(Console.ReadLine());
+        //     if(foundProduct == null)
+        //     {
+        //         Console.WriteLine("no such Product exists try again#NewOrder");
+        //     }
+        //     Console.WriteLine(foundProduct.ToString());
+        //     return foundProduct;
+        // }
+        public Item I = new Item(); 
         public void CreateOrder()
         {
+            double total;
             Order newOrder = new Order();
+            Product P = new Product();
+            
             newOrder.Customer =  currentCustomer;
             while(true){
                 if (currentLocation.Id == null)
@@ -217,22 +235,59 @@ namespace StoreUI
                 }
             }
             newOrder.Location= currentLocation;
+            
+            //while(true ){
+                Console.WriteLine("Add product would you like to order[0 to exit]");
+                SearchForProduct();
+                Console.WriteLine("How many would you like");
+                I.Quantity = (int.Parse(Console.ReadLine()));
+                newOrder.Item= I;
+           // }
+            total = I.Product.Price*I.Quantity;
 
-            Console.WriteLine("Enter Order total");
-            newOrder.Total = double.Parse(Console.ReadLine());
+            // Console.WriteLine("Enter Order total");
+            newOrder.Total = total;
             _storeBL.AddOrder(newOrder);
+            Console.WriteLine(newOrder.ToString());
         }
 
         public void GetOrder()
         {
+            int count = 1;
             Location l = new Location();
             foreach (var item in _storeBL.GetOrder())
             {
+                Console.WriteLine($"Order {count++}\n");
                 if(item.CFK == currentCustomer.Id){
-                    Console.WriteLine(item.ToString());
+                    
                     l=_storeBL.GetLocationById((int)item.LFK);
                     Console.WriteLine(l.ToString()+"\n");
+                    Console.WriteLine(item.ToString());
                  }
+            }
+            Console.WriteLine("Press any key to continue");
+            Console.ReadLine();
+
+        }
+        public void GetLocationItems()
+        {
+          
+            Product P = new Product();
+            foreach (var item in _storeBL.GetLocationItems())
+            {
+                while(true){
+                    if (currentLocation.Id == null)
+                    {
+                        Console.WriteLine("Enter Location Name");
+                        currentLocation= SearchForLocation(Console.ReadLine());
+                        break;
+                    }
+                }
+                if(item.LFK == currentLocation.Id){
+                    Console.WriteLine(item.ToString());
+                   // P=_storeBL.GetProductById((int)item.PFK);
+                    //Console.WriteLine(P.ToString()+"\n");
+                }
             }
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();

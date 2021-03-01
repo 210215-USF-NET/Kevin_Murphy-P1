@@ -12,8 +12,12 @@ namespace StoreModels
         public int Quantity { get; set; }
 
         public int? Id { get; set; }
+        public int? LFK { get; set; }
+        
+        public int? PFK { get; set; }
 
-        public override string ToString() => $"\n\t name: {this.Product}  \n\t  item name: {this.Quantity} ";
+        public override string ToString() => $" \n\t  item name: {this.Quantity} ";
+
 
     }
 }

@@ -17,6 +17,6 @@ namespace StoreModels
         public int? CFK { get; set; }
         public int? LFK { get; set; }
 
-        public override string ToString() =>  $"{this.Customer.ToString()} \n\t Total: {this.Total}";// $"\n\t location name:  Item name: {this.Item.ToString()} \n\t{this.Location.ToString()}";
+        public override string ToString() =>  $"{this.Customer.ToString()} \n\t Total: ${this.Total}";// $"\n\t location name:  Item name: {this.Item.ToString()} \n\t{this.Location.ToString()}";
     }
 }

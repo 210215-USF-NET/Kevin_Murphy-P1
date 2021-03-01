@@ -20,7 +20,8 @@ namespace StoreBL
         Location GetLocationByName(string name);
         Location GetLocationById(int? Id);
         Product GetProductByName(string name);
-
-
+    
+        List<Item> GetLocationItems();
+        Product GetProductById(int? Id);
     }
 }

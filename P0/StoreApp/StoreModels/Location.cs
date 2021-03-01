@@ -9,7 +9,9 @@ namespace StoreModels
         public string LocationName { get; set; }
         //TODO: add some property for the location inventory
         public Product Product{get; set;}
+        
         public int? Id { get; set; }
+        //public int? PFK { get; set; }
         public override string ToString() => $"Location Details: \n\t Address: {this.Address} \n\t Location Name: {this.LocationName}"; /*Location Name: {this.Product.ToString()}";*/
     }
 }
