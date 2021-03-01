@@ -147,5 +147,17 @@ namespace StoreDL
                 Id = (int)product.Id
             };
         }
+        //get the inventory -> Item
+        public Item ParseItem(Inventory inventory)
+        {
+            return new Item
+            {
+                Quantity = inventory.Quantity,
+                Id = inventory.Id,
+                LFK = inventory.Location,
+                PFK = inventory.Product
+
+            };  
+        }
     }
 }
