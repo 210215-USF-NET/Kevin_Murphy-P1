@@ -52,7 +52,10 @@ namespace StoreDL
                 {
                     CustomerName = customer.CustomerName,
                     PhoneNumber = customer.PhoneNumber,
-                    CarType = (int)customer.CarType
+                    CarType = (int)customer.CarType,
+                    
+                    
+
                    
                 };
             }  

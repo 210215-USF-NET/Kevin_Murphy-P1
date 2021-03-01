@@ -169,7 +169,9 @@ namespace StoreUI
             else
             {
                 Console.WriteLine(foundCustomer.ToString());
+               
             }
+            currentCustomer= foundCustomer;
         }
         public Customer  SearchForCustomer(string number)
         {
@@ -179,6 +181,7 @@ namespace StoreUI
             {
                 Console.WriteLine("no such customer exists try making a new one");
             }
+            currentCustomer = foundCustomer;
             return foundCustomer;
         }
         public void SearchForLocation()
@@ -225,12 +228,12 @@ namespace StoreUI
             Order newOrder = new Order();
             Product P = new Product();
             
-            newOrder.Customer =  currentCustomer;
+           
             while(true){
                 if (currentLocation.Id == null)
                 {
                     Console.WriteLine("Enter Location Name");
-                    currentLocation= SearchForLocation(Console.ReadLine());
+                    currentLocation = SearchForLocation(Console.ReadLine());
                     break;
                 }
             }
@@ -246,24 +249,27 @@ namespace StoreUI
             total = I.Product.Price*I.Quantity;
 
             // Console.WriteLine("Enter Order total");
-            newOrder.Total = total;
+            newOrder.Total = total; 
+            newOrder.Customer =  currentCustomer;
+            newOrder.Customer.Id = currentCustomer.Id;
+            newOrder.CFK = currentCustomer.Id;
             _storeBL.AddOrder(newOrder);
             Console.WriteLine(newOrder.ToString());
         }
 
         public void GetOrder()
         {
-            int count = 1;
+            
             Location l = new Location();
             foreach (var item in _storeBL.GetOrder())
             {
-                Console.WriteLine($"Order {count++}\n");
+               
                 if(item.CFK == currentCustomer.Id){
                     
                     l=_storeBL.GetLocationById((int)item.LFK);
                     Console.WriteLine(l.ToString()+"\n");
                     Console.WriteLine(item.ToString());
-                 }
+                }
             }
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();
@@ -275,18 +281,17 @@ namespace StoreUI
             Product P = new Product();
             foreach (var item in _storeBL.GetLocationItems())
             {
-                while(true){
-                    if (currentLocation.Id == null)
-                    {
-                        Console.WriteLine("Enter Location Name");
-                        currentLocation= SearchForLocation(Console.ReadLine());
-                        break;
-                    }
-                }
+            
+                    
+                Console.WriteLine("Enter Location Name");
+                currentLocation= SearchForLocation(Console.ReadLine());
+                       
+                    
+                
                 if(item.LFK == currentLocation.Id){
-                    Console.WriteLine(item.ToString());
-                   // P=_storeBL.GetProductById((int)item.PFK);
-                    //Console.WriteLine(P.ToString()+"\n");
+                    //Console.WriteLine(item.ToString());
+                    P=_storeBL.GetProductById((int)item.PFK);
+                    Console.WriteLine(P.ToString()+"\n");
                 }
             }
             Console.WriteLine("Press any key to continue");
