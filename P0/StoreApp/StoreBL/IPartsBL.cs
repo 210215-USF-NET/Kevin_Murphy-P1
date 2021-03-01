@@ -10,7 +10,7 @@ namespace StoreBL
         List<Product> GetProduct();
 
         List<Product> GetProducts();
-         List<Location> GetLocations();
+        List<Location> GetLocations();
 
         void AddCustomer(Customer newCustomer);
 
@@ -18,6 +18,7 @@ namespace StoreBL
         Customer GetCustomerByNumber(string number);
       
         Location GetLocationByName(string name);
+        Location GetLocationById(int? Id);
         Product GetProductByName(string name);
 
 

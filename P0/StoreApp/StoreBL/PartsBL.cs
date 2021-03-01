@@ -49,6 +49,10 @@ namespace StoreBL
         {
             return _repo.GetLocationByName(name);
         }
+          public Location GetLocationById(int? Id)
+        {
+            return _repo.GetLocationById(Id);
+        }
 
         public List<Product> GetProduct()
         {

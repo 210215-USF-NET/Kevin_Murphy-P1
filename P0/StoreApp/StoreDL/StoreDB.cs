@@ -33,6 +33,11 @@ namespace StoreDL
             throw new System.NotImplementedException();
         }
 
+        public Location GetLocationById(int? Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Location GetLocationByName(string number)
         {
             throw new System.NotImplementedException();

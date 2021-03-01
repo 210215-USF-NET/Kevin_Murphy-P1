@@ -96,6 +96,7 @@ namespace StoreUI
                             }
                             catch (Exception e)
                             {
+                                Console.WriteLine(currentLocation.ToString());
                                 Console.WriteLine("Invalid input. Try another again!\n\n" + e.Message);
                             }
                         }
@@ -207,18 +208,31 @@ namespace StoreUI
         {
             Order newOrder = new Order();
             newOrder.Customer =  currentCustomer;
-            newOrder.Location = currentLocation;
+            while(true){
+                if (currentLocation.Id == null)
+                {
+                    Console.WriteLine("Enter Location Name");
+                    currentLocation= SearchForLocation(Console.ReadLine());
+                    break;
+                }
+            }
+            newOrder.Location= currentLocation;
+
             Console.WriteLine("Enter Order total");
             newOrder.Total = double.Parse(Console.ReadLine());
             _storeBL.AddOrder(newOrder);
         }
+
         public void GetOrder()
         {
+            Location l = new Location();
             foreach (var item in _storeBL.GetOrder())
             {
-                if(item.Customer.PhoneNumber == currentCustomer.PhoneNumber)
+                if(item.CFK == currentCustomer.Id){
                     Console.WriteLine(item.ToString());
-              
+                    l=_storeBL.GetLocationById((int)item.LFK);
+                    Console.WriteLine(l.ToString()+"\n");
+                 }
             }
             Console.WriteLine("Press any key to continue");
             Console.ReadLine();

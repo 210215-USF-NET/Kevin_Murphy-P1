@@ -3,12 +3,14 @@ using Entity = StoreDL.Entities;
 using StoreModels;
 using StoreDL.Entities;
 using System;
+using StoreDL;
 
 namespace StoreDL
 {
-    public class StoreMapper : IMapper
+     
+     public class StoreMapper : IMapper
     {
-        Model.Customer customerTemp = new Model.Customer();
+       Model.Customer customerTemp = new Model.Customer();
 
          public Model.Customer ParseCustomer(int? customer)
         {
@@ -68,12 +70,25 @@ namespace StoreDL
         { 
             return new Model.Order
             {
+               
                 Customer=ParseCustomer(order.Customer),
+                CFK = order.Customer,
                 Location = ParseLocation(order.Location),
+                LFK = order.Location,
                 Total = order.Total,
                 Id = (int)order.Id
             };
         }
+        //   public Order ParseOrderFK(Entity.StoreOrder order)
+        // { 
+        //     return new Model.Order
+        //     {
+        //         CFK = order.Customer,
+        //        // Location = ParseLocation(order.Location),
+        //         Total = order.Total,
+        //         Id = (int)order.Id
+        //     };
+        // }
 
 
 

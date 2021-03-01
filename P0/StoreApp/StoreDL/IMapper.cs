@@ -14,5 +14,7 @@ namespace StoreDL
         Model.Order ParseOrder(Entity.StoreOrder order);
 
         Entity.StoreOrder ParseOrder(Model.Order order);
+        
+        //Entity.StoreOrder ParseOrderFK(Model.Order order);
     }
 }
