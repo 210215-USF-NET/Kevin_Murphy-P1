@@ -86,7 +86,10 @@ namespace StoreBL
             return _repo.GetProductById(Id);
         }
 
-
+        public Customer GetCustomerById(int? Id)
+        {
+            return _repo.GetCustomerById(Id);
+        }
     }
 
 }

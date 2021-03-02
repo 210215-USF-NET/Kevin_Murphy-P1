@@ -23,6 +23,11 @@ namespace StoreDL
             throw new System.NotImplementedException();
         }
 
+        public Customer GetCustomerById(int? Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Customer GetCustomerByNumber(string PhoneNumber)
         {
             throw new System.NotImplementedException();

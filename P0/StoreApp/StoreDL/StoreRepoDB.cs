@@ -44,11 +44,11 @@ namespace StoreDL
 
             return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.PhoneNumber ==number);
         }
-        public Customer GetCustomerById(int? Id)
-        {
-            temp = _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.Id ==Id);
-            return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.Id ==Id);
-        }
+        // public Customer GetCustomerById(int? Id)
+        // {
+        //     temp = _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.Id ==Id);
+        //     return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.Id ==Id);
+        // }
 
         public List<Location> GetLocation()
         {
@@ -62,6 +62,10 @@ namespace StoreDL
         public Location GetLocationById(int? Id)
         {
            return _context.Locations.AsNoTracking().Select(x => _mapper.ParseLocation(x)).ToList().FirstOrDefault(x => x.Id == Id);
+        }
+        public Customer GetCustomerById(int? Id)
+        {
+           return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList().FirstOrDefault(x => x.Id == Id);
         }
 
         public Product GetProductByName(string name)

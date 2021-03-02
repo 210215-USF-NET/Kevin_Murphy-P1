@@ -12,18 +12,18 @@ namespace StoreDL
     {
        Model.Customer customerTemp = new Model.Customer();
 
-         public Model.Customer ParseCustomer(int? customer)
-        {
+        //  public Model.Customer ParseCustomer(int? customer)
+        // {
             
-            return new Model.Customer
-            {
-                CustomerName = customerTemp.CustomerName,
-                PhoneNumber = customerTemp.PhoneNumber,
-                CarType = (Model.CarType)customerTemp.CarType,
-                Id = (int)customerTemp.Id
-            };
-        }
-        //get
+        //     return new Model.Customer
+        //     {
+        //         CustomerName = customerTemp.CustomerName,
+        //         PhoneNumber = customerTemp.PhoneNumber,
+        //         CarType = (Model.CarType)customerTemp.CarType,
+        //         Id = (int)customerTemp.Id
+        //     };
+        // }
+        // //get
           
         public Model.Customer ParseCustomer(Entity.Customer customer)
         {
@@ -74,7 +74,7 @@ namespace StoreDL
             return new Model.Order
             {
                
-                Customer=ParseCustomer(order.Customer),
+               // Customer=ParseCustomer(order.Customer),
                 CFK = order.Customer,
                 Location = ParseLocation(order.Location),
                 LFK = order.Location,

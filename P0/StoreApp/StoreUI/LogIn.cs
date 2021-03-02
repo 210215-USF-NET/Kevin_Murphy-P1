@@ -171,7 +171,9 @@ namespace StoreUI
                 Console.WriteLine(foundCustomer.ToString());
                
             }
+             Console.WriteLine(currentCustomer.ToString());
             currentCustomer= foundCustomer;
+            currentCustomer.Id = foundCustomer.Id;
         }
         public Customer  SearchForCustomer(string number)
         {
@@ -181,7 +183,10 @@ namespace StoreUI
             {
                 Console.WriteLine("no such customer exists try making a new one");
             }
+
             currentCustomer = foundCustomer;
+            currentCustomer.Id = foundCustomer.Id;
+            Console.WriteLine(currentCustomer.ToString());
             return foundCustomer;
         }
         public void SearchForLocation()
@@ -259,16 +264,18 @@ namespace StoreUI
 
         public void GetOrder()
         {
-            
+            Customer c = new Customer();
             Location l = new Location();
             foreach (var item in _storeBL.GetOrder())
             {
                
                 if(item.CFK == currentCustomer.Id){
-                    
+
+                    Console.WriteLine((_storeBL.GetCustomerById((int)item.CFK).ToString()));
                     l=_storeBL.GetLocationById((int)item.LFK);
                     Console.WriteLine(l.ToString()+"\n");
                     Console.WriteLine(item.ToString());
+                    
                 }
             }
             Console.WriteLine("Press any key to continue");
