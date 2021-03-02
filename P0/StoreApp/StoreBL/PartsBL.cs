@@ -21,6 +21,10 @@ namespace StoreBL
         {
             _repo.AddOrder(newOrder);
         }
+         public void AddIO(Item I)
+        {
+            _repo.AddIO(I);
+        }
 
         public List<Customer> GetCustomer()
         {
@@ -90,6 +94,13 @@ namespace StoreBL
         {
             return _repo.GetCustomerById(Id);
         }
+
+        public Item GetItemByOID(int? Id)
+        {
+           return _repo.GetItemByOID(Id);
+        }
+
+       
     }
 
 }

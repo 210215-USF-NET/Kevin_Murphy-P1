@@ -11,6 +11,7 @@ namespace StoreDL
         Customer AddCustomer(Customer newCustomer);
 
         Order AddOrder(Order newOrder);
+        Item AddIO(Item I);
         List<Order> GetOrder();
         List<Location> GetLocation();
         List<Product> GetProduct();
@@ -25,6 +26,7 @@ namespace StoreDL
         Product GetProductById(int? Id);
         Customer GetCustomerById(int? Id);
         List<Item> GetLocationItems();
+        Item GetItemByOID(int? Id);
 
         // Order AddProduct(Product newProduct);
         // List<Product> GetProduct();

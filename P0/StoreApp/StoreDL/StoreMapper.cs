@@ -82,17 +82,6 @@ namespace StoreDL
                 Id = (int)order.Id
             };
         }
-        //   public Order ParseOrderFK(Entity.StoreOrder order)
-        // { 
-        //     return new Model.Order
-        //     {
-        //         CFK = order.Customer,
-        //        // Location = ParseLocation(order.Location),
-        //         Total = order.Total,
-        //         Id = (int)order.Id
-        //     };
-        // }
-
 
 
         //to DB(createorder)
@@ -116,6 +105,37 @@ namespace StoreDL
                 Id = (int)order.Id
             };
         }
+        //set orderITem
+        public Entity.OrderItem ParseIt(Model.Item Item)
+        {
+               if(Item.Id ==null )
+            {
+                return new Entity.OrderItem
+                {
+                    Product =Item.PFK,
+                    Quantity = Item.Quantity,
+                    StoreOrder = Item.OID 
+                    
+                };
+            }  
+            return new Entity.OrderItem
+            {
+                Product =Item.PFK,
+                Quantity = Item.Quantity,
+                StoreOrder = Item.OID 
+            };
+        }
+        //get orederItem
+        public Model.Item ParseIt(Entity.OrderItem item)
+        {
+            return new Model.Item
+            {
+                Quantity = item.Quantity,
+                PFK = item.Product,
+                OID = (int)item.StoreOrder
+            };
+        }
+
         public Model.Location locationTemp = new Model.Location();
         public Model.Location ParseLocation(int? location)
         {
@@ -162,5 +182,14 @@ namespace StoreDL
 
             };  
         }
+        // public OIS POIS(OrderItem OI)
+        // {
+        //     return new OIS
+        //     {
+        //         Quantity = OI.Quantity,
+        //         PFK = OI.Product
+
+        //     };  
+        // }
     }
 }

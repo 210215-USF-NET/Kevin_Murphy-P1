@@ -13,6 +13,11 @@ namespace StoreDL
             throw new System.NotImplementedException();
         }
 
+        public Item AddIO(Item I)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Order AddOrder(Order newOrder)
         {
             throw new System.NotImplementedException();
@@ -29,6 +34,11 @@ namespace StoreDL
         }
 
         public Customer GetCustomerByNumber(string PhoneNumber)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Item GetItemByOID(int? Id)
         {
             throw new System.NotImplementedException();
         }

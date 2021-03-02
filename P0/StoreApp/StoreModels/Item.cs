@@ -15,8 +15,8 @@ namespace StoreModels
         public int? LFK { get; set; }
         
         public int? PFK { get; set; }
-
-        public override string ToString() => $" \n\t  item name: {this.Quantity} ";
+        public int? OID {get; set;}
+        public override string ToString() => $" \n\t  item Quanity: {this.Quantity} ";
 
 
     }
