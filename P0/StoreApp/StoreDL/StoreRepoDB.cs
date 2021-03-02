@@ -110,5 +110,10 @@ namespace StoreDL
         {
             return _context.Products.AsNoTracking().Select(x => _mapper.ParseProduct(x)).ToList().FirstOrDefault(x => x.Id == Id);
         }
+
+        public Item GetItemByOID(int? Id)
+        {
+           return _context.OrderItems.AsNoTracking().Select(x => _mapper.ParseIt(x)).ToList().FirstOrDefault(x => x.OID == Id);
+        }
     }
 }

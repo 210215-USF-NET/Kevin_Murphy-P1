@@ -25,6 +25,7 @@ namespace StoreDL
         Product GetProductById(int? Id);
         Customer GetCustomerById(int? Id);
         List<Item> GetLocationItems();
+        Item GetItemByOID(int? Id);
 
         // Order AddProduct(Product newProduct);
         // List<Product> GetProduct();

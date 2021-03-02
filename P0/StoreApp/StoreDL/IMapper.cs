@@ -16,6 +16,8 @@ namespace StoreDL
         Entity.StoreOrder ParseOrder(Model.Order order);
 
         Model.Item ParseItem(Entity.Inventory inventory);
+        Model.Item ParseIt(Entity.OrderItem item);
+        Entity.OrderItem ParseIt(Model.Item Item);
         //Entity.StoreOrder ParseOrderFK(Model.Order order);
     }
 }

@@ -24,5 +24,6 @@ namespace StoreBL
     
         List<Item> GetLocationItems();
         Product GetProductById(int? Id);
+        Item GetItemByOID(int? Id);
     }
 }

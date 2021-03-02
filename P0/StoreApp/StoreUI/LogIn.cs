@@ -274,7 +274,9 @@ namespace StoreUI
                     Console.WriteLine((_storeBL.GetCustomerById((int)item.CFK).ToString()));
                     l=_storeBL.GetLocationById((int)item.LFK);
                     Console.WriteLine(l.ToString()+"\n");
+                    Console.WriteLine(_storeBL.GetItemByOID((int)item.Id));
                     Console.WriteLine(item.ToString());
+                    //_storeBL.GetOIS
                     
                 }
             }

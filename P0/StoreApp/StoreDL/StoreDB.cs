@@ -33,6 +33,11 @@ namespace StoreDL
             throw new System.NotImplementedException();
         }
 
+        public Item GetItemByOID(int? Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Location> GetLocation()
         {
             throw new System.NotImplementedException();

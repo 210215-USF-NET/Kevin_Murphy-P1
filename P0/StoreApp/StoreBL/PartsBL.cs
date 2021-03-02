@@ -90,6 +90,11 @@ namespace StoreBL
         {
             return _repo.GetCustomerById(Id);
         }
+
+        public Item GetItemByOID(int? Id)
+        {
+           return _repo.GetItemByOID(Id);
+        }
     }
 
 }
