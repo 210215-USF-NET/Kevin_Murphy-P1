@@ -32,7 +32,12 @@ namespace StoreDL
             _context.SaveChanges();
             return(newOrder);
         }
-
+        public Model.Item AddIO(Model.Item I)
+        {
+           _context.OrderItems.Add(_mapper.ParseIt(I));
+           _context.SaveChanges();
+           return(I);
+        }
         public List<Customer> GetCustomer()
         {
             return _context.Customers.AsNoTracking().Select(x => _mapper.ParseCustomer(x)).ToList();
@@ -115,5 +120,7 @@ namespace StoreDL
         {
            return _context.OrderItems.AsNoTracking().Select(x => _mapper.ParseIt(x)).ToList().FirstOrDefault(x => x.OID == Id);
         }
+
+        
     }
 }

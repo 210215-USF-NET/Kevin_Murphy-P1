@@ -204,7 +204,7 @@ namespace StoreUI
             return foundLocation;
         }
 
-         public void SearchForProduct()
+        public void SearchForProduct()
         {
             Console.WriteLine("Enter item Name");
             Product foundProduct = _storeBL.GetProductByName(Console.ReadLine());
@@ -213,7 +213,7 @@ namespace StoreUI
                 Console.WriteLine("no such Product exists try again");
             }
             I.Product = foundProduct;
-
+            I.PFK = foundProduct.Id;
             Console.WriteLine(foundProduct.ToString());
         }
         // public Product SearchForProduct(string name)
@@ -232,6 +232,7 @@ namespace StoreUI
             double total;
             Order newOrder = new Order();
             Product P = new Product();
+            // Item newItem = new Item();
             
            
             while(true){
@@ -252,18 +253,25 @@ namespace StoreUI
                 newOrder.Item= I;
            // }
             total = I.Product.Price*I.Quantity;
-
+           // I.LFK = currentLocation.Id;
+            
             // Console.WriteLine("Enter Order total");
             newOrder.Total = total; 
             newOrder.Customer =  currentCustomer;
             newOrder.Customer.Id = currentCustomer.Id;
             newOrder.CFK = currentCustomer.Id;
+           
+            //Console.WriteLine($"q={I.Quantity}\tPFK={I.PFK}\tOID={I.OID}");
             _storeBL.AddOrder(newOrder);
-            Console.WriteLine(newOrder.ToString());
+            Console.WriteLine(newOrder.ToString()); 
+
+           // I.OID = (int)newOrder.Id;
+            //_storeBL.AddIO(I);
         }
 
         public void GetOrder()
-        {
+        {   
+            Item OrderItem = new Item(); 
             Customer c = new Customer();
             Location l = new Location();
             foreach (var item in _storeBL.GetOrder())
@@ -274,7 +282,13 @@ namespace StoreUI
                     Console.WriteLine((_storeBL.GetCustomerById((int)item.CFK).ToString()));
                     l=_storeBL.GetLocationById((int)item.LFK);
                     Console.WriteLine(l.ToString()+"\n");
-                    Console.WriteLine(_storeBL.GetItemByOID((int)item.Id));
+                    OrderItem=_storeBL.GetItemByOID((int)item.Id);
+                    // if(OrderItem.Id ==null || OrderItem.PFK==null)
+                    // {
+                    //     Console.WriteLine((_storeBL.GetProductById(OrderItem.PFK)).ToString());
+                    //     Console.WriteLine($"Quantity {OrderItem.Quantity}");
+                    // }
+                        
                     Console.WriteLine(item.ToString());
                     //_storeBL.GetOIS
                     

@@ -15,6 +15,7 @@ namespace StoreBL
         void AddCustomer(Customer newCustomer);
 
         void AddOrder(Order newOrder);
+        void AddIO(Item I);
         Customer GetCustomerByNumber(string number);
       
         Location GetLocationByName(string name);
@@ -25,5 +26,6 @@ namespace StoreBL
         List<Item> GetLocationItems();
         Product GetProductById(int? Id);
         Item GetItemByOID(int? Id);
+
     }
 }
