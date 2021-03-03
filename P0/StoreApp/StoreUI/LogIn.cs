@@ -75,7 +75,8 @@ namespace StoreUI
                 Console.WriteLine("[7] Get all locations");
                 Console.WriteLine("[8] Enter a specific store");
                 Console.WriteLine("[9] Check what store I am at");
-                Console.WriteLine("[10] Get all Products for your current location");
+                Console.WriteLine("[10] Get all Products for specific location");
+                 Console.WriteLine("[11] Leave the store");
                 Console.WriteLine("Enter a number");
                 string userInput = Console.ReadLine();
                 Order newOrder = new Order();
@@ -135,6 +136,10 @@ namespace StoreUI
                         break;
                     case "10":
                         GetLocationItems();
+                        break;
+                    case "11":
+                        Goodbye();
+                        stay = false;
                         break;
                     default:
                         Console.WriteLine("Invalid input");
