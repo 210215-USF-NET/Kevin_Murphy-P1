@@ -40,7 +40,7 @@ namespace StoreModels
         public CarType CarType { get; set; }
         public int? Id { get; set; }
 
-        public override string ToString() => $"Customer Details: \n\t name: {this.CustomerName} \n\t phone number: {this.PhoneNumber} \n\t Car Type: {this.CarType} \n\t user ID: {this.Id}";
-        //TODO: add more properties to identify the customer
+        public override string ToString() => $"Customer Details: \n\t name: {this.CustomerName} \n\t phone number: {this.PhoneNumber} \n\t Car Type: {this.CarType} \n\t ";
+        //TODO: add more properties to identify the customerser ID: {this.Id}"
     }
 }

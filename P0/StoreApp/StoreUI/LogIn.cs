@@ -235,15 +235,16 @@ namespace StoreUI
             Product P = new Product();
             // Item newItem = new Item();
             
-           
-            while(true){
-                if (currentLocation.Id == null)
-                {
-                    Console.WriteLine("Enter Location Name");
-                    currentLocation = SearchForLocation(Console.ReadLine());
-                    break;
-                }
-            }
+            Console.WriteLine("Enter Location Name");
+            currentLocation = SearchForLocation(Console.ReadLine());
+            // while(true)
+            // {
+            //     if (currentLocation.Id == null)
+            //     {
+                    
+            //         break;
+            //     }
+            // }
             newOrder.Location= currentLocation;
             
             //while(true ){
