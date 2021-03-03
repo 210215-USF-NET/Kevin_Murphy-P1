@@ -94,12 +94,14 @@ namespace StoreUI
                 {
                     case "0":
                         CreateCustomer();
+                        log.Information($"Creation of a new user {currentCustomer.ToString()} at"+ DateTime.Now);
                         break;
                     case ".5":
                         Console.WriteLine(currentCustomer.ToString());
+                        log.Information($"Switched user to {currentCustomer.ToString()} at"+ DateTime.Now);
                         break;
                     case "1":
-                      while(true){
+                        while(true){
                             try
                             {
                                 CreateOrder();
@@ -109,6 +111,7 @@ namespace StoreUI
                             {
                                 Console.WriteLine(currentLocation.ToString());
                                 Console.WriteLine("Invalid input. Try another again!\n\n" + e.Message);
+                                log.Debug(e.Message+DateTime.Now);
                             }
                         }
                         break;
@@ -120,12 +123,12 @@ namespace StoreUI
                         break;
                     case "4":
                         SearchForProduct();
+                        log.Information($"Searching for product"+DateTime.Now);
                         break;
-                  
                     case "5":
                         GetOrder();
                         break; 
-                     case "6":
+                    case "6":
                         GetProducts();
                         break;
                     case "7":
@@ -148,17 +151,18 @@ namespace StoreUI
                         break;
                     case "11":
                         Goodbye();
+                        log.Information("Leaving the store");
                         stay = false;
                         break;
                     default:
                         Console.WriteLine("Invalid input");
+                        log.Debug("An invalid input was entered at"+DateTime.Now);
                         break;
                 }
             }while(stay);
 
     
 
-           
         }
         public void CreateCustomer()
         {
@@ -172,6 +176,7 @@ namespace StoreUI
             Console.WriteLine($"Welcome {newCustomer.CustomerName}"); 
             _storeBL.AddCustomer(newCustomer);
             currentCustomer = newCustomer;
+
         }
         public void SearchForCustomer()
         {
