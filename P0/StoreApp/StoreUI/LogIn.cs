@@ -2,33 +2,41 @@ using StoreModels;
 using System;
 using StoreBL;
 using Serilog;
+using System.IO;
 namespace StoreUI
 {
     public class LogIn : IMenu
     {
+     
         private IPartsBL _storeBL;
         public LogIn(IPartsBL storeBL)
         {
             _storeBL = storeBL;
         }
         public void Goodbye(){
+            //og.Information("The User logged out ");
             Console.WriteLine("Thank you come again!");
         }
         public Customer currentCustomer = new Customer();
         public Location currentLocation = new Location();
         public void Start()
         {
-            
-            
+        var log = new LoggerConfiguration()
+        //.WriteTo.Console()
+        .WriteTo.File("../logs/Menu.txt",rollingInterval: RollingInterval.Day)
+        .CreateLogger();
+           
             
             Console.WriteLine("Welcome to the Car Parts Store");
-            Console.WriteLine("Are you a new user?(Y or N)");
+            Console.WriteLine("Are you a new user?(Y or N)"); 
+            log.Information("Logging in ");
             string userIn = Console.ReadLine();
             if(userIn.Equals("y",StringComparison.OrdinalIgnoreCase)){
                 while(true){
                     try
                     {
                         CreateCustomer();
+                        log.Information($"Creation of a new user {currentCustomer.ToString()} at"+ DateTime.Now);
                         break;
                     }
                     catch (Exception e)
@@ -45,13 +53,14 @@ namespace StoreUI
                     try
                     {
                         currentCustomer=SearchForCustomer(Console.ReadLine());
-                        
+                        log.Information($"This is a returning customer{currentCustomer.ToString()}");
                
                         break;
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine("Invalid input. Try another again!\n\n" + e.Message);
+                        
                         //Log.
                     }
                 }
