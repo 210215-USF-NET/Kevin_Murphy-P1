@@ -1,6 +1,7 @@
 using StoreModels;
 using System;
 using StoreBL;
+using Serilog;
 namespace StoreUI
 {
     public class LogIn : IMenu
@@ -51,7 +52,7 @@ namespace StoreUI
                     catch (Exception e)
                     {
                         Console.WriteLine("Invalid input. Try another again!\n\n" + e.Message);
-                        
+                        //Log.
                     }
                 }
                Console.WriteLine("Welcome back!");
@@ -271,6 +272,7 @@ namespace StoreUI
 
         public void GetOrder()
         {   
+
             Item OrderItem = new Item(); 
             Customer c = new Customer();
             Location l = new Location();
@@ -301,20 +303,17 @@ namespace StoreUI
         public void GetLocationItems()
         {
           
-            Product P = new Product();
+            Product P = new Product();   
+            Console.WriteLine("Enter Location Name");
+            currentLocation= SearchForLocation(Console.ReadLine());
             foreach (var item in _storeBL.GetLocationItems())
             {
-            
-                    
-                Console.WriteLine("Enter Location Name");
-                currentLocation= SearchForLocation(Console.ReadLine());
-                       
-                    
-                
-                if(item.LFK == currentLocation.Id){
+                if(item.LFK == currentLocation.Id)
+                {
                     //Console.WriteLine(item.ToString());
                     P=_storeBL.GetProductById((int)item.PFK);
-                    Console.WriteLine(P.ToString()+"\n");
+                    Console.WriteLine(P.ToString());
+                    Console.WriteLine($"\tQuantity available {item.Quantity}\n");             
                 }
             }
             Console.WriteLine("Press any key to continue");

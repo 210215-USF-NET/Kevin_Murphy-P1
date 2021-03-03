@@ -74,9 +74,10 @@ insert into customers(customerName,phoneNumber,carType)values
 
 
 insert into products(productName,productDescription,productPrice)values
-('Bumper','This goes on your car',15),('Head lights','They help you see in the dark',45);
+('Bumper','This goes on your car',15),('Head lights','They help you see in the dark',45),
+('Head Gaskets','creates a seal between the eninge block and the cylinder head',20),('Exaughst system','Guides exaughst gases from the engine',1500);
 insert into locations(locationName,locationAddress)values
-('Online store','www.store.com');
+('Online store','www.store.com'),('Chicago','226 S Michaigan Ave,Chicago,IL');
 
 insert into storeOrders(total,customer,location)values
 (30.00,2,1);
@@ -85,7 +86,7 @@ insert into orderItems(quantity,storeOrder,product)values
 (2,3,1);
 
 insert into inventories(inventoryName,quantity,location,product)values
-('Online Inventory',2,1,1);
+('Online Inventory',2,1,1),('Chicago',14,2,2);
 
 -- select * from inventorys;
 -- select * from customers;
