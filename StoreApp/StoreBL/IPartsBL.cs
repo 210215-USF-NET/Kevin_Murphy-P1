@@ -12,20 +12,20 @@ namespace StoreBL
         List<Product> GetProducts();
         List<Location> GetLocations();
 
-        void AddCustomer(Customer newCustomer);
+        Customer AddCustomer(Customer newCustomer);
 
-        void AddOrder(Order newOrder);
+        Order AddOrder(Order newOrder);
         void AddIO(Item I);
         Customer GetCustomerByNumber(string number);
       
         Location GetLocationByName(string name);
-        Location GetLocationById(int? Id);
-        Customer GetCustomerById(int? Id);
+        Location GetLocationById(int Id);
+        Customer GetCustomerById(int Id);
         Product GetProductByName(string name);
     
         List<Item> GetLocationItems();
-        Product GetProductById(int? Id);
-        Item GetItemByOID(int? Id);
+        Product GetProductById(int Id);
+        Item GetItemByOID(int Id);
 
     }
 }

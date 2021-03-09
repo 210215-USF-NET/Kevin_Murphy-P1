@@ -12,14 +12,15 @@ namespace StoreBL
         public PartsBL(IStoreRepository repo){
             _repo = repo;
         }
-        public void AddCustomer(Customer newCustomer)
+
+        public Customer AddCustomer(Customer newCustomer)
         {
-            _repo.AddCustomer(newCustomer);
+           return _repo.AddCustomer(newCustomer);
         }
 
-        public void AddOrder(Order newOrder)
+        public Order AddOrder(Order newOrder)
         {
-            _repo.AddOrder(newOrder);
+            return _repo.AddOrder(newOrder);
         }
          public void AddIO(Item I)
         {
@@ -53,7 +54,7 @@ namespace StoreBL
         {
             return _repo.GetLocationByName(name);
         }
-          public Location GetLocationById(int? Id)
+          public Location GetLocationById(int Id)
         {
             return _repo.GetLocationById(Id);
         }
@@ -85,17 +86,17 @@ namespace StoreBL
             return _repo.GetLocationItems();
         }
 
-        public Product GetProductById(int? Id)
+        public Product GetProductById(int Id)
         {
             return _repo.GetProductById(Id);
         }
 
-        public Customer GetCustomerById(int? Id)
+        public Customer GetCustomerById(int Id)
         {
             return _repo.GetCustomerById(Id);
         }
 
-        public Item GetItemByOID(int? Id)
+        public Item GetItemByOID(int Id)
         {
            return _repo.GetItemByOID(Id);
         }

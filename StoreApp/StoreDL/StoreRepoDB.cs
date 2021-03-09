@@ -1,0 +1,117 @@
+﻿using Microsoft.EntityFrameworkCore;
+using StoreModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StoreDL
+{
+    public class StoreRepoDB : IStoreRepository
+    {
+        private readonly StoreDBContext _context;
+        public StoreRepoDB(StoreDBContext context)
+        {
+            _context = context;
+        }
+        public Customer AddCustomer(Customer newCustomer)
+        {
+            _context.Customers.Add(newCustomer);
+            _context.SaveChanges();
+            return newCustomer;
+        }
+
+        public Item AddIO(Item I)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Order AddOrder(Order newOrder)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Customer> GetCustomer()
+        {
+            return _context.Customers
+                .AsNoTracking()
+                .Select(customer => customer)
+                .ToList();
+        }
+
+        public Customer GetCustomerById(int Id)
+        {
+            //could include the "Superpower using the .include method
+            //return the first customer that has the id that matches the in put id
+            return _context.Customers
+                .AsNoTracking()
+                .FirstOrDefault(customer => customer.Id == Id);
+        }
+
+        public Customer GetCustomerById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Customer GetCustomerByNumber(string number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Item GetItemByOID(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Location> GetLocation()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Location GetLocationById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Location GetLocationByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Item> GetLocationItems()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Location> GetLocations()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Order> GetOrder()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> GetProduct()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product GetProductById(int? Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Product GetProductByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Product> GetProducts()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
