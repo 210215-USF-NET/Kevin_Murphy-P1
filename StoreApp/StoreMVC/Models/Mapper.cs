@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StoreMVC.Models
 {
-    public class Mapper :  IMapper
+    public class Mapper : IMapper
     {
         public CustomerIndexVM cast2CustomerIndexVM(Customer customer2BCasted)
         {
@@ -25,6 +25,16 @@ namespace StoreMVC.Models
                 CustomerName = customer2BCasted.CustomerName,
                 PhoneNumber = customer2BCasted.PhoneNumber,
                 CarType = customer2BCasted.CarType
+            };
+        }
+
+        public CustomerCRVM cast2CustomerCRVM(Customer customer)
+        {
+            return new CustomerCRVM
+            {
+                CustomerName = customer.CustomerName,
+                PhoneNumber = customer.PhoneNumber,
+                CarType = customer.CarType
             };
         }
     }

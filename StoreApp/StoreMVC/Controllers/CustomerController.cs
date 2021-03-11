@@ -27,9 +27,9 @@ namespace StoreMVC.Controllers
         }
 
         // GET: CustomerController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string number)
         {
-            return View();
+            return View(_mapper.cast2CustomerCRVM(_partsBL.GetCustomerByNumber(number)));
         }
 
         // GET: CustomerController/Create

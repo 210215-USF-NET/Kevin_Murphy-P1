@@ -56,7 +56,7 @@ namespace StoreDL
 
         public Customer GetCustomerByNumber(string number)
         {
-            throw new NotImplementedException();
+            return _context.Customers.AsNoTracking().FirstOrDefault(customer => customer.PhoneNumber == number);
         }
 
         public Item GetItemByOID(int? Id)
