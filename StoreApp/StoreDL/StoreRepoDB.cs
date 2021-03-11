@@ -27,6 +27,13 @@ namespace StoreDL
             throw new NotImplementedException();
         }
 
+        public Location AddLocation(Location newLocation)
+        {
+            _context.Locations.Add(newLocation);
+            _context.SaveChanges();
+            return newLocation;
+        }
+
         public Order AddOrder(Order newOrder)
         {
             throw new NotImplementedException();
@@ -66,7 +73,10 @@ namespace StoreDL
 
         public List<Location> GetLocation()
         {
-            throw new NotImplementedException();
+            return _context.Locations
+                .AsNoTracking()
+                .Select(location => location)
+                .ToList();
         }
 
         public Location GetLocationById(int? Id)
@@ -76,7 +86,7 @@ namespace StoreDL
 
         public Location GetLocationByName(string name)
         {
-            throw new NotImplementedException();
+            return _context.Locations.AsNoTracking().FirstOrDefault(location => location.LocationName == name);
         }
 
         public List<Item> GetLocationItems()

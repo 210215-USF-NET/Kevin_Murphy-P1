@@ -13,7 +13,7 @@ namespace StoreBL
         List<Location> GetLocations();
 
         Customer AddCustomer(Customer newCustomer);
-
+        Location AddLocation(Location newLocation);
         Order AddOrder(Order newOrder);
         void AddIO(Item I);
         Customer GetCustomerByNumber(string number);

@@ -37,6 +37,32 @@ namespace StoreMVC.Models
                 CarType = customer.CarType
             };
         }
+
+        public Location cast2Location(LocationCRVM location2BCasted)
+        {
+            return new Location
+            {
+                LocationName = location2BCasted.LocationName,
+                Address = location2BCasted.Address
+            };
+        }
+
+        public LocationCRVM cast2LocationCRVM(Location location)
+        {
+           return new LocationCRVM{
+               LocationName = location.LocationName,
+               Address = location.Address
+            };
+        }
+
+        public LocationIndexVM cast2LocationIndexVM(Location location2BCasted)
+        {
+            return new LocationIndexVM
+            {
+                Address = location2BCasted.Address,
+                LocationName = location2BCasted.LocationName
+            };
+        }
     }
 
 }

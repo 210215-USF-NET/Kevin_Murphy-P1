@@ -101,7 +101,10 @@ namespace StoreBL
            return _repo.GetItemByOID(Id);
         }
 
-       
+        public Location AddLocation(Location newLocation)
+        {
+            return _repo.AddLocation(newLocation);
+        }
     }
 
 }

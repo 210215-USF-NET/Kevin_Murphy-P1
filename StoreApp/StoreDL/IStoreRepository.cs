@@ -9,7 +9,7 @@ namespace StoreDL
         List<Customer> GetCustomer();
 
         Customer AddCustomer(Customer newCustomer);
-
+        Location AddLocation(Location newLocation);
         Order AddOrder(Order newOrder);
         Item AddIO(Item I);
         List<Order> GetOrder();
