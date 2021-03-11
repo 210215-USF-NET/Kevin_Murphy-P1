@@ -14,6 +14,7 @@ namespace StoreBL
 
         Customer AddCustomer(Customer newCustomer);
         Location AddLocation(Location newLocation);
+        Product AddProduct(Product newProduct);
         Order AddOrder(Order newOrder);
         void AddIO(Item I);
         Customer GetCustomerByNumber(string number);
@@ -26,6 +27,7 @@ namespace StoreBL
         List<Item> GetLocationItems();
         Product GetProductById(int Id);
         Item GetItemByOID(int Id);
+        Location DeleteLocation(Location location2BDeleted);
 
     }
 }

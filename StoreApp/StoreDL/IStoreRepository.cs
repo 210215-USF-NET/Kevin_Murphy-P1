@@ -9,6 +9,7 @@ namespace StoreDL
         List<Customer> GetCustomer();
 
         Customer AddCustomer(Customer newCustomer);
+        Product AddProduct(Product newProduct);
         Location AddLocation(Location newLocation);
         Order AddOrder(Order newOrder);
         Item AddIO(Item I);
@@ -27,6 +28,7 @@ namespace StoreDL
         Customer GetCustomerById(int? Id);
         List<Item> GetLocationItems();
         Item GetItemByOID(int? Id);
+        Location DeleteLocation(Location location2BDeleted);
 
         // Order AddProduct(Product newProduct);
         // List<Product> GetProduct();

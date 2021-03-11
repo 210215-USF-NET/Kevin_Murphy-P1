@@ -39,6 +39,20 @@ namespace StoreDL
             throw new NotImplementedException();
         }
 
+        public Product AddProduct(Product newProduct)
+        {
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
+            return newProduct;
+        }
+
+        public Location DeleteLocation(Location location2BDeleted)
+        {
+            _context.Locations.Remove(location2BDeleted);
+            _context.SaveChanges();
+            return location2BDeleted;
+        }
+
         public List<Customer> GetCustomer()
         {
             return _context.Customers
@@ -121,7 +135,10 @@ namespace StoreDL
 
         public List<Product> GetProducts()
         {
-            throw new NotImplementedException();
+            return _context.Products
+               .AsNoTracking()
+               .Select(product => product)
+               .ToList();
         }
     }
 }

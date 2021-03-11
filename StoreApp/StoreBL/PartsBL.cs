@@ -105,6 +105,16 @@ namespace StoreBL
         {
             return _repo.AddLocation(newLocation);
         }
+
+        public Product AddProduct(Product newProduct)
+        {
+            return _repo.AddProduct(newProduct);
+        }
+
+        public Location DeleteLocation(Location location2BDeleted)
+        {
+            return _repo.DeleteLocation( location2BDeleted);
+        }
     }
 
 }

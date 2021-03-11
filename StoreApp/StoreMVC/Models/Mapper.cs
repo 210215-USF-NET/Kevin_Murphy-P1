@@ -63,6 +63,36 @@ namespace StoreMVC.Models
                 LocationName = location2BCasted.LocationName
             };
         }
+
+        public Product cast2Product(ProductCRVM product2BCasted)
+        {
+            return new Product
+            {
+                ProductName = product2BCasted.ProductName,
+                Price = product2BCasted.Price,
+                ProductDescription = product2BCasted.ProductDescription
+            };
+        }
+
+        public ProductCRVM cast2ProductCRVM(Product product)
+        {
+            return new ProductCRVM
+            {
+                ProductName = product.ProductName,
+                Price = product.Price,
+                ProductDescription = product.ProductDescription
+            };
+        }
+
+        public ProductIndexVM cast2ProductIndexVM(Product product2BCasted)
+        {
+            return new ProductIndexVM
+            {
+                ProductName = product2BCasted.ProductName,
+                Price = product2BCasted.Price,
+                ProductDescription = product2BCasted.ProductDescription
+            };
+        }
     }
 
 }

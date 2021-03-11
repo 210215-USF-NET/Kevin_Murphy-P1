@@ -7,70 +7,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace StoreMVC.Controllers
 {
-    public class LocationController : Controller
+    public class ProductController : Controller
     {
         private IPartsBL _partsBL;
         private IMapper _mapper;
-        public LocationController(IPartsBL partsBL, IMapper mapper)
-        {
-
+        public ProductController(IPartsBL partsBL, IMapper mapper)
+        { 
             _partsBL = partsBL;
             _mapper = mapper;
         }
-        // GET: LocationController
+        // GET: ProductController
         public ActionResult Index()
         {
-            return View(_partsBL.GetLocation().Select(location => _mapper.cast2LocationIndexVM(location)).ToList());
+            return View(_partsBL.GetProducts().Select(product => _mapper.cast2ProductIndexVM(product)));
         }
 
-        // GET: LocationController/Details/5
-        public ActionResult Details(string name)
+        // GET: ProductController/Details/5
+        public ActionResult Details(int id)
         {
-            return View(_mapper.cast2LocationCRVM(_partsBL.GetLocationByName(name)));
+            return View();
         }
 
-        // GET: LocationController/Create
+        // GET: ProductController/Create
         public ActionResult Create()
         {
-         
-              
-           
-                return View("CreateLocation");
-            
+            return View("CreateProduct");
         }
 
-        // POST: LocationController/Create
+        // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(LocationCRVM newLocation)
+        public ActionResult Create(ProductCRVM newProduct)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _partsBL.AddLocation(_mapper.cast2Location(newLocation));
+                    _partsBL.AddProduct(_mapper.cast2Product(newProduct));
                     return RedirectToAction(nameof(Index));
                 }
                 catch
                 {
                     return View();
                 }
+
             }
             else
             {
                 return View();
             }
+
         }
 
-        // GET: LocationController/Edit/5
+        // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: LocationController/Edit/5
+        // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -85,14 +83,13 @@ namespace StoreMVC.Controllers
             }
         }
 
-        // GET: LocationController/Delete/5
-        public ActionResult Delete(string name)
+        // GET: ProductController/Delete/5
+        public ActionResult Delete(int id)
         {
-            _partsBL.DeleteLocation(_partsBL.GetLocationByName(name));
-            return RedirectToAction(nameof(Index));
+            return View();
         }
 
-        // POST: LocationController/Delete/5
+        // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
