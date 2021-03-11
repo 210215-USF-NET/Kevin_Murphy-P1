@@ -22,10 +22,10 @@ steps:
     command: 'build'
     projects: '**/StoreApp/*.sln'
  
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-    projects: '**/StoreApp/*.sln'
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'test'
+#     projects: '**/StoreApp/*.sln'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
