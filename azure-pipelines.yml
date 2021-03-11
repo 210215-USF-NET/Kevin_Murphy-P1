@@ -5,22 +5,22 @@
 
 trigger:
 - main
-
+ 
 pool:
   vmImage: 'windows-latest'
-
+ 
 variables:
   solution: '**/StoreApp/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-
+ 
 steps:
-
+ 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: '**/StoreApp/*.sln'
-
+ 
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
@@ -31,3 +31,4 @@ steps:
     publishWebProjects: false
     zipAfterPublish: true
     projects: '**/StoreApp/StoreMVC/*.csproj'
+
