@@ -16,7 +16,14 @@ variables:
   buildConfiguration: 'Release'
  
 steps:
- 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'P1'
+    organization: '210215-usf-net'
+    scannerMode: 'MSBuild'
+    projectKey: '210215-USF-NET_Kevin_Murphy-P1'
+    projectName: 'Kevin_Murphy-P1'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
@@ -26,6 +33,12 @@ steps:
 #   inputs:
 #     command: 'test'
 #     projects: '**/StoreApp/*.sln'
+
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
