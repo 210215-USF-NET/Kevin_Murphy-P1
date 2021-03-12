@@ -115,6 +115,11 @@ namespace StoreBL
         {
             return _repo.DeleteLocation( location2BDeleted);
         }
+
+        public Product DeleteProduct(Product product2BDeleted)
+        {
+            return _repo.DeleteProduct(product2BDeleted);
+        }
     }
 
 }

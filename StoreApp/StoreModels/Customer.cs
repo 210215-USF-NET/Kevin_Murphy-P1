@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 namespace StoreModels
 {
@@ -7,14 +8,16 @@ namespace StoreModels
     /// </summary>
     public class Customer
     {
+        public object order;
 
-   
         public string CustomerName { get;set ;}
 
         public string PhoneNumber{ get ;set;}
         //public string ID { get; set; }
         public CarType CarType { get; set; }
         public int Id { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
 
         public override string ToString() => $"Customer Details: \n\t name: {this.CustomerName} \n\t phone number: {this.PhoneNumber} \n\t Car Type: {this.CarType} \n\t ";
         //TODO: add more properties to identify the customerser ID: {this.Id}"

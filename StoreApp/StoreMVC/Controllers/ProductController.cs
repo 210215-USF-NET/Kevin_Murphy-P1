@@ -84,9 +84,10 @@ namespace StoreMVC.Controllers
         }
 
         // GET: ProductController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string name)
         {
-            return View();
+            _partsBL.DeleteProduct(_partsBL.GetProductByName(name));
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: ProductController/Delete/5

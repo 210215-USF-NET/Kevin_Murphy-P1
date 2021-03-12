@@ -29,6 +29,7 @@ namespace StoreDL
         List<Item> GetLocationItems();
         Item GetItemByOID(int? Id);
         Location DeleteLocation(Location location2BDeleted);
+        Product DeleteProduct(Product product2BDeleted);
 
         // Order AddProduct(Product newProduct);
         // List<Product> GetProduct();

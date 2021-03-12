@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace StoreModels
 {
     /// <summary>
@@ -8,8 +10,10 @@ namespace StoreModels
         public string Address { get; set; }
         public string LocationName { get; set; }
         //TODO: add some property for the location inventory
-        public Product Product{get; set;}
-        
+        /*public Product Product { get; set; }*/
+        public ICollection<Order> Orders { get; set; }
+        public ICollection<Product> Products { get; set; }
+        public ICollection<Inventory> Inventories { get; set; }
         public int Id { get; set; }
         //public int? PFK { get; set; }
         public override string ToString() => $"Location Details: \n\t Address: {this.Address} \n\t Location Name: {this.LocationName}"; /*Location Name: {this.Product.ToString()}";*/

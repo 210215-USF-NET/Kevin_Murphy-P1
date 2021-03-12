@@ -27,6 +27,7 @@ namespace StoreBL
         List<Item> GetLocationItems();
         Product GetProductById(int Id);
         Item GetItemByOID(int Id);
+        Product DeleteProduct(Product product2BDeleted);
         Location DeleteLocation(Location location2BDeleted);
 
     }

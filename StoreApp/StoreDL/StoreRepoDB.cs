@@ -53,6 +53,13 @@ namespace StoreDL
             return location2BDeleted;
         }
 
+        public Product DeleteProduct(Product product2BDeleted)
+        {
+            _context.Products.Remove(product2BDeleted);
+            _context.SaveChanges();
+            return product2BDeleted;
+        }
+
         public List<Customer> GetCustomer()
         {
             return _context.Customers
@@ -130,7 +137,7 @@ namespace StoreDL
 
         public Product GetProductByName(string name)
         {
-            throw new NotImplementedException();
+            return _context.Products.AsNoTracking().FirstOrDefault(product => product.ProductName == name);
         }
 
         public List<Product> GetProducts()
