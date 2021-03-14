@@ -12,5 +12,6 @@ namespace StoreMVC.Models
         public string LocationName { get; set; }
         [DisplayName("Location Address")]
         public string Address { get; set; }
+        public int LocationId { get; set; }
     }
 }

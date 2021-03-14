@@ -44,6 +44,8 @@ namespace StoreMVC.Models
             {
                 LocationName = location2BCasted.LocationName,
                 Address = location2BCasted.Address
+                
+                
             };
         }
 
@@ -51,7 +53,9 @@ namespace StoreMVC.Models
         {
            return new LocationCRVM{
                LocationName = location.LocationName,
-               Address = location.Address
+               Address = location.Address,
+               LocationId = location.Id
+
             };
         }
 
@@ -60,7 +64,8 @@ namespace StoreMVC.Models
             return new LocationIndexVM
             {
                 Address = location2BCasted.Address,
-                LocationName = location2BCasted.LocationName
+                LocationName = location2BCasted.LocationName,
+                LocationId = location2BCasted.Id
             };
         }
 

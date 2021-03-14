@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using StoreBL;
 using StoreMVC.Models;
 using System;
+using StoreModels;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,7 +33,21 @@ namespace StoreMVC.Controllers
             return View(_mapper.cast2LocationCRVM(_partsBL.GetLocationByName(name)));
         }
 
+        //products view for a given location
+        public ActionResult Products(int Id)
+        {
+            List<Product> l = new List<Product>();
+            l = _partsBL.GetproductByLocationId(Id).ToList();
+            return View(l);
+        }
+
+        private void ToList()
+        {
+            throw new NotImplementedException();
+        }
+
         // GET: LocationController/Create
+
         public ActionResult Create()
         {
          

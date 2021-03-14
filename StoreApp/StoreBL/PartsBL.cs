@@ -120,6 +120,11 @@ namespace StoreBL
         {
             return _repo.DeleteProduct(product2BDeleted);
         }
+
+        public List<Product> GetproductByLocationId(int Id)
+        {
+            return _repo.GetProductByLocationId(Id);
+        }
     }
 
 }

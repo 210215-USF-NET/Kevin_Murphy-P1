@@ -23,6 +23,7 @@ namespace StoreBL
         Location GetLocationById(int Id);
         Customer GetCustomerById(int Id);
         Product GetProductByName(string name);
+        List<Product> GetproductByLocationId(int Id);
     
         List<Item> GetLocationItems();
         Product GetProductById(int Id);

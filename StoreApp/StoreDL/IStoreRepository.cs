@@ -22,6 +22,7 @@ namespace StoreDL
 
         Customer GetCustomerByNumber(string number);
         Product GetProductByName(string name);
+        List<Product> GetProductByLocationId(int Id);
         Location GetLocationByName(string name);
         Location GetLocationById(int? Id);
         Product GetProductById(int? Id);
