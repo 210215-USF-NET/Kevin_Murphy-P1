@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
+using static System.Net.WebRequestMethods;
 
 namespace StoreMVC.Controllers
 {
@@ -15,6 +17,7 @@ namespace StoreMVC.Controllers
     {
         private IPartsBL _partsBL;
         private IMapper _mapper;
+        private Customer _customer;
         public CustomerController(IPartsBL partsBL,IMapper mapper)
         {
 
@@ -24,6 +27,7 @@ namespace StoreMVC.Controllers
         // GET: CustomerController
         public ActionResult Index()
         {
+              
             return View(_partsBL.GetCustomer().Select(customer => _mapper.cast2CustomerIndexVM(customer)).ToList());
         }
 
@@ -34,6 +38,16 @@ namespace StoreMVC.Controllers
         }
 
         // GET: CustomerController/Create
+    
+
+
+        public ActionResult Login(string number)
+        {
+            _customer = _partsBL.GetCustomerByNumber(number);
+            HttpContext.Session.SetString("customer", JsonSerializer.Serialize(_customer));
+            return RedirectToAction(nameof(Index));
+           
+        }
         public ActionResult Create()
         {
             return View("CreateCustomer");

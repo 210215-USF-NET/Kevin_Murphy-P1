@@ -5,8 +5,20 @@
 <div class="text-center">
     <h1 class="display-4">Welcome To The Parts Store</h1>
     <p>
-        <a asp-action="Create">Sign up</a>
-        @*<a asp-action="">Sign in</a>*@
+       
+            <li><a asp-controller="Customer" asp-action="Create">Sign up</a></li> 
+            <div>
+                @using (Html.BeginForm()) { 
+                    <label for="inputPhoneNumber">Phone Number</label>
+                    <input type="text" name="number" class="form-control" placeholder="Phone Number" />
+                    <br>
+                    <input type="submit" asp-controller="Customer" asp-action="Login" />
+                 }
+                
+            </div>
+        
+      
+       
     </p>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
