@@ -10,8 +10,8 @@ using StoreDL;
 namespace StoreDL.Migrations
 {
     [DbContext(typeof(StoreDBContext))]
-    [Migration("20210312055310_OrdersAdded")]
-    partial class OrdersAdded
+    [Migration("20210314012259_InitialAfterRestart")]
+    partial class InitialAfterRestart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -15,6 +15,7 @@ namespace StoreModels
         public int Id { get; set; }
         public ICollection<Inventory> Inventories { get; set; }
         public ICollection<Orderline> Orderlines { get; set; }
+        public int LocationId { get; set; }
        
 
         //todo: add more properties to define a product (maybe a category?)

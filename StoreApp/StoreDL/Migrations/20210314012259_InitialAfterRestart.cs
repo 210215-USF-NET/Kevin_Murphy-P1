@@ -3,33 +3,95 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace StoreDL.Migrations
 {
-    public partial class OrdersAdded : Migration
+    public partial class InitialAfterRestart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Locations_Products_ProductId",
-                table: "Locations");
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CustomerName = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    CarType = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                });
 
-            migrationBuilder.DropIndex(
-                name: "IX_Locations_ProductId",
-                table: "Locations");
+            migrationBuilder.CreateTable(
+                name: "Locations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    LocationName = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Locations", x => x.Id);
+                });
 
-            migrationBuilder.DropColumn(
-                name: "ProductId",
-                table: "Locations");
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CustomerId = table.Column<int>(type: "integer", nullable: true),
+                    LocationId = table.Column<int>(type: "integer", nullable: true),
+                    Total = table.Column<double>(type: "double precision", nullable: false),
+                    ItemId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
-            migrationBuilder.AddColumn<int>(
-                name: "LocationId",
-                table: "Products",
-                type: "integer",
-                nullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "OrderId",
-                table: "Products",
-                type: "integer",
-                nullable: true);
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ProductName = table.Column<string>(type: "text", nullable: true),
+                    Price = table.Column<double>(type: "double precision", nullable: false),
+                    ProductDescription = table.Column<string>(type: "text", nullable: true),
+                    LocationId = table.Column<int>(type: "integer", nullable: true),
+                    OrderId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Locations_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Locations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Products_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Inventories",
@@ -79,40 +141,6 @@ namespace StoreDL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CustomerId = table.Column<int>(type: "integer", nullable: true),
-                    LocationId = table.Column<int>(type: "integer", nullable: true),
-                    Total = table.Column<double>(type: "double precision", nullable: false),
-                    ItemId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Orders_Item_ItemId",
-                        column: x => x.ItemId,
-                        principalTable: "Item",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Orders_Locations_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Locations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Orderlines",
                 columns: table => new
                 {
@@ -145,16 +173,6 @@ namespace StoreDL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_LocationId",
-                table: "Products",
-                column: "LocationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_OrderId",
-                table: "Products",
-                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Inventories_LocationId",
@@ -201,19 +219,21 @@ namespace StoreDL.Migrations
                 table: "Orders",
                 column: "LocationId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Products_Locations_LocationId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_LocationId",
                 table: "Products",
-                column: "LocationId",
-                principalTable: "Locations",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                column: "LocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_OrderId",
+                table: "Products",
+                column: "OrderId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Products_Orders_OrderId",
-                table: "Products",
-                column: "OrderId",
-                principalTable: "Orders",
+                name: "FK_Orders_Item_ItemId",
+                table: "Orders",
+                column: "ItemId",
+                principalTable: "Item",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
@@ -221,12 +241,16 @@ namespace StoreDL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
+                name: "FK_Orders_Locations_LocationId",
+                table: "Orders");
+
+            migrationBuilder.DropForeignKey(
                 name: "FK_Products_Locations_LocationId",
                 table: "Products");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Products_Orders_OrderId",
-                table: "Products");
+                name: "FK_Item_Products_ProductId",
+                table: "Item");
 
             migrationBuilder.DropTable(
                 name: "Inventories");
@@ -235,45 +259,19 @@ namespace StoreDL.Migrations
                 name: "Orderlines");
 
             migrationBuilder.DropTable(
+                name: "Locations");
+
+            migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
+                name: "Customers");
+
+            migrationBuilder.DropTable(
                 name: "Item");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Products_LocationId",
-                table: "Products");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Products_OrderId",
-                table: "Products");
-
-            migrationBuilder.DropColumn(
-                name: "LocationId",
-                table: "Products");
-
-            migrationBuilder.DropColumn(
-                name: "OrderId",
-                table: "Products");
-
-            migrationBuilder.AddColumn<int>(
-                name: "ProductId",
-                table: "Locations",
-                type: "integer",
-                nullable: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Locations_ProductId",
-                table: "Locations",
-                column: "ProductId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Locations_Products_ProductId",
-                table: "Locations",
-                column: "ProductId",
-                principalTable: "Products",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
     }
 }
