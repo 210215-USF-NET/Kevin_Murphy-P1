@@ -32,6 +32,15 @@ namespace StoreMVC
             services.AddScoped<IStoreRepository,StoreRepoDB>(); 
             services.AddScoped<IPartsBL, PartsBL>();
             services.AddScoped<IMapper, Mapper >();
+            services.AddDistributedMemoryCache();
+            services.AddSession(option =>
+            {
+                option.IdleTimeout =TimeSpan.FromMinutes(30);
+                option.Cookie.HttpOnly = true;
+                option.Cookie.IsEssential = true;
+            });
+
+            services.AddMvc();
 
         }
 
@@ -54,7 +63,7 @@ namespace StoreMVC
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

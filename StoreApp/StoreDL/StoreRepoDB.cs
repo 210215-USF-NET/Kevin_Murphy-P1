@@ -135,6 +135,11 @@ namespace StoreDL
             throw new NotImplementedException();
         }
 
+        public List<Product> GetProductByLocationId(int Id)
+        {
+            return _context.Products.AsNoTracking().Where(product => product.LocationId == Id).ToList();
+        }
+
         public Product GetProductByName(string name)
         {
             return _context.Products.AsNoTracking().FirstOrDefault(product => product.ProductName == name);
