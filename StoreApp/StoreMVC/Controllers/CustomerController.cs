@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StoreBL;
 using StoreDL;
 using StoreMVC.Models;
+using StoreModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,13 @@ namespace StoreMVC.Controllers
         public ActionResult Create()
         {
             return View("CreateCustomer");
+        }
+
+        public ActionResult ViewOrders(int Id)
+        {
+            List<Order> o = new List<Order>();
+            o = _partsBL.GetOrderByCustomerId(Id).ToList();
+            return View(o);
         }
 
         // POST: CustomerController/Create

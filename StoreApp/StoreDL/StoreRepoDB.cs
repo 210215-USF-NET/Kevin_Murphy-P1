@@ -125,6 +125,11 @@ namespace StoreDL
             throw new NotImplementedException();
         }
 
+        public List<Order> GetOrderByCustomerId(int Id)
+        {
+            return _context.Orders.AsNoTracking().Where(order => order.Customer.Id == Id).ToList();
+        }
+
         public List<Product> GetProduct()
         {
             throw new NotImplementedException();

@@ -16,6 +16,7 @@ namespace StoreMVC.Models
         //public string ID { get; set; }
         [DisplayName("Car Type")]
         public CarType CarType { get; set; }
+        public int CustomerId { get; set; }
         
     }
 }

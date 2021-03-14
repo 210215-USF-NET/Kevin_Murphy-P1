@@ -6,6 +6,7 @@ namespace StoreBL
     {
         List<Customer> GetCustomer();
         List<Order> GetOrder();
+        List<Order> GetOrderByCustomerId(int Id);
         List<Location> GetLocation();
         List<Product> GetProduct();
 

@@ -14,7 +14,8 @@ namespace StoreMVC.Models
             {
                 CustomerName = customer2BCasted.CustomerName,
                 CarType = customer2BCasted.CarType,
-                PhoneNumber = customer2BCasted.PhoneNumber
+                PhoneNumber = customer2BCasted.PhoneNumber,
+                CustomerId = customer2BCasted.Id
             };
 
         }
