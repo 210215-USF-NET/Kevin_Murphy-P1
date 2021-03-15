@@ -27,6 +27,13 @@ namespace StoreDL
             throw new NotImplementedException();
         }
 
+        public Item AddItem(Item newItem)
+        {
+            _context.Item.Add(newItem);
+            _context.SaveChanges();
+            return newItem;
+        }
+
         public Location AddLocation(Location newLocation)
         {
             _context.Locations.Add(newLocation);
@@ -36,7 +43,9 @@ namespace StoreDL
 
         public Order AddOrder(Order newOrder)
         {
-            throw new NotImplementedException();
+            _context.Orders.Add(newOrder);
+            _context.SaveChanges();
+            return newOrder;
         }
 
         public Product AddProduct(Product newProduct)
@@ -122,12 +131,22 @@ namespace StoreDL
 
         public List<Order> GetOrder()
         {
-            throw new NotImplementedException();
+            return _context.Orders.AsNoTracking().Select(order => order).ToList();
         }
 
         public List<Order> GetOrderByCustomerId(int Id)
         {
             return _context.Orders.AsNoTracking().Where(order => order.Customer.Id == Id).ToList();
+        }
+
+        public Order GetOrderById(int Id)
+        {
+            return _context.Orders.AsNoTracking().FirstOrDefault(order => order.Id == Id);
+        }
+
+        public List<Orderline> GetOrderline()
+        {
+           return _context.Orderlines.AsNoTracking().Select(orderline => orderline).ToList();
         }
 
         public List<Product> GetProduct()

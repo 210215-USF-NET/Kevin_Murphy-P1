@@ -24,6 +24,7 @@ namespace StoreDL
         public DbSet<Order> Orders { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Orderline> Orderlines { get; set; }
+        public DbSet<Item> Item { get; set; }
        /* protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

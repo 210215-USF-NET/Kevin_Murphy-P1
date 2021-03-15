@@ -38,7 +38,12 @@ namespace StoreMVC.Controllers
         }
 
         // GET: CustomerController/Create
-    
+        public ActionResult AddOrder(string number)
+        {
+            _customer = (_partsBL.GetCustomerByNumber(number));
+
+            return View();
+        }
 
 
         public ActionResult Login(string number)

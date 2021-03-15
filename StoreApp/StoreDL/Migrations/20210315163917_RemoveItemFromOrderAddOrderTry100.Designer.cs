@@ -10,8 +10,8 @@ using StoreDL;
 namespace StoreDL.Migrations
 {
     [DbContext(typeof(StoreDBContext))]
-    [Migration("20210314012259_InitialAfterRestart")]
-    partial class InitialAfterRestart
+    [Migration("20210315163917_RemoveItemFromOrderAddOrderTry100")]
+    partial class RemoveItemFromOrderAddOrderTry100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,7 +74,7 @@ namespace StoreDL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Quantity")
@@ -112,13 +112,16 @@ namespace StoreDL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("ItemId")
+                    b.Property<int>("LocationId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("LocationId")
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
                     b.Property<double>("Total")
@@ -128,9 +131,9 @@ namespace StoreDL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("ItemId");
-
                     b.HasIndex("LocationId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Orders");
                 });
@@ -142,13 +145,13 @@ namespace StoreDL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("LocationId")
+                    b.Property<int>("LocationId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Quantity")
@@ -172,7 +175,7 @@ namespace StoreDL.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("LocationId")
+                    b.Property<int>("LocationId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("OrderId")
@@ -215,7 +218,9 @@ namespace StoreDL.Migrations
                 {
                     b.HasOne("StoreModels.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
                 });
@@ -224,36 +229,48 @@ namespace StoreDL.Migrations
                 {
                     b.HasOne("StoreModels.Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("StoreModels.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StoreModels.Location", "Location")
                         .WithMany("Orders")
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StoreModels.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Item");
-
                     b.Navigation("Location");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("StoreModels.Orderline", b =>
                 {
                     b.HasOne("StoreModels.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StoreModels.Order", "Order")
                         .WithMany("Orderlines")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StoreModels.Product", "Product")
                         .WithMany("Orderlines")
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Location");
 
@@ -266,7 +283,9 @@ namespace StoreDL.Migrations
                 {
                     b.HasOne("StoreModels.Location", null)
                         .WithMany("Products")
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("LocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("StoreModels.Order", null)
                         .WithMany("Products")

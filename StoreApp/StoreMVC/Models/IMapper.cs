@@ -15,5 +15,12 @@ namespace StoreMVC.Models
         Product cast2Product(ProductCRVM product2BCasted);
         ProductCRVM cast2ProductCRVM(Product product);
         ProductIndexVM cast2ProductIndexVM(Product product2BCasted);
+
+        Order cast2Order(OrderCRVM order2BCasted);
+        OrderCRVM cast2OrderCRVM(Order order);
+        OrderIndexVM cast2OrderIndexVM(Order order2BCasted);
+
+        OrderlinesIndexVM cast2OrderlineIndexVM(Orderline orderline2BCasted);
+
     }
 }

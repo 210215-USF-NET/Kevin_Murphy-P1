@@ -7,68 +7,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace StoreMVC.Controllers
 {
-    public class ProductController : Controller
+    public class OrderController : Controller
     {
         private IPartsBL _partsBL;
         private IMapper _mapper;
-        public ProductController(IPartsBL partsBL, IMapper mapper)
-        { 
+
+        public OrderController(IPartsBL partsBL, IMapper mapper)
+        {
             _partsBL = partsBL;
             _mapper = mapper;
         }
-        // GET: ProductController
+        // GET: OrderController
         public ActionResult Index()
         {
-            return View(_partsBL.GetProducts().Select(product => _mapper.cast2ProductIndexVM(product)));
+            return View(_partsBL.GetOrder().Select( order => _mapper.cast2OrderIndexVM(order)).ToList());
         }
 
-        // GET: ProductController/Details/5
+        // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: ProductController/Create
+        // GET: OrderController/Create
         public ActionResult Create()
         {
-            return View("CreateProduct");
+            return View("CreateOrder");
         }
 
-        // POST: ProductController/Create
+        // POST: OrderController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProductCRVM newProduct)
+        public ActionResult Create(OrderCRVM newOrder)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _partsBL.AddProduct(_mapper.cast2Product(newProduct));
-                    return RedirectToAction(nameof(Index));
-                }
-                catch
-                {
-                    return RedirectToAction(nameof(Index));
-                }
-
-            }
-            else
-            {
+                _partsBL.AddOrder(_mapper.cast2Order(newOrder));
                 return RedirectToAction(nameof(Index));
             }
-
+            catch
+            {
+                return View();
+            }
         }
 
-        // GET: ProductController/Edit/5
+        // GET: OrderController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Edit/5
+        // POST: OrderController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -83,14 +74,13 @@ namespace StoreMVC.Controllers
             }
         }
 
-        // GET: ProductController/Delete/5
-        public ActionResult Delete(string name)
+        // GET: OrderController/Delete/5
+        public ActionResult Delete(int id)
         {
-            _partsBL.DeleteProduct(_partsBL.GetProductByName(name));
-            return RedirectToAction(nameof(Index));
+            return View();
         }
 
-        // POST: ProductController/Delete/5
+        // POST: OrderController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

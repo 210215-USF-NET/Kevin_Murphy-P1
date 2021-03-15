@@ -76,7 +76,8 @@ namespace StoreMVC.Models
             {
                 ProductName = product2BCasted.ProductName,
                 Price = product2BCasted.Price,
-                ProductDescription = product2BCasted.ProductDescription
+                ProductDescription = product2BCasted.ProductDescription,
+                LocationId = product2BCasted.LocationId
             };
         }
 
@@ -86,7 +87,9 @@ namespace StoreMVC.Models
             {
                 ProductName = product.ProductName,
                 Price = product.Price,
-                ProductDescription = product.ProductDescription
+                ProductDescription = product.ProductDescription,
+                LocationId = product.LocationId
+                
             };
         }
 
@@ -97,6 +100,56 @@ namespace StoreMVC.Models
                 ProductName = product2BCasted.ProductName,
                 Price = product2BCasted.Price,
                 ProductDescription = product2BCasted.ProductDescription
+
+            };
+        }
+        public OrderIndexVM cast2OrderIndexVM(Order order2BCasted)
+        {
+            return new OrderIndexVM
+            {
+                CustomerId = order2BCasted.CustomerId,
+                LocationId = order2BCasted.LocationId,
+                Total  = order2BCasted.Total
+            };
+        }
+
+        public OrderCRVM cast2OrderCRVM(Order order)
+        {
+            return new OrderCRVM
+            {
+                
+                CustomerId = order.Customer.Id,
+                LocaitonId = order.Location.Id,
+                Total = order.Total,
+                ProductId = order.ProductId,
+                Quantitiy = order.Quantity
+            
+            };
+        }
+        public Order cast2Order(OrderCRVM order2BCasted)
+        {
+            return new Order
+            {
+                Total = order2BCasted.Total,
+                CustomerId = order2BCasted.CustomerId,
+                LocationId = order2BCasted.LocaitonId,
+                Quantity =order2BCasted.Quantitiy,
+               /* ItemId = order2BCasted.ItemId,
+                Item = new Item {  }*/
+               // Quantity =order2BCasted.Quantitiy,
+                ProductId =order2BCasted.ProductId
+              
+
+            };
+        }
+
+        public OrderlinesIndexVM cast2OrderlineIndexVM(Orderline orderline2BCasted)
+        {
+            return new OrderlinesIndexVM
+            {
+                OrderlineId =orderline2BCasted.ID,
+                Quantity = orderline2BCasted.Quantity
+
             };
         }
     }
