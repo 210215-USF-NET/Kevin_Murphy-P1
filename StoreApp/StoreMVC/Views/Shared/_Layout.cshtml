@@ -1,4 +1,11 @@
 ﻿<!DOCTYPE html>
+
+@using System.Text.Json;
+@using StoreModels;
+@using Microsoft.AspNetCore.Http;
+@*@{
+    Customer customer = JsonSerializer.Deserialize<Customer>(Context.Session.GetString("customer"));
+}*@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -32,6 +39,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">Orders</a>
                         </li>
                     </ul>
                 </div>

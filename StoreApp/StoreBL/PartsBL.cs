@@ -125,6 +125,26 @@ namespace StoreBL
         {
             return _repo.GetProductByLocationId(Id);
         }
+
+        public List<Order> GetOrderByCustomerId(int Id)
+        {
+            return _repo.GetOrderByCustomerId(Id);
+        }
+
+        public Order GetOrderById(int Id)
+        {
+            return _repo.GetOrderById(Id);
+        }
+
+        public Item AddItem(Item newItem)
+        {
+            return _repo.AddItem(newItem);
+        }
+
+        public List<Orderline> GetOrderline()
+        {
+            return _repo.GetOrderline();
+        }
     }
 
 }

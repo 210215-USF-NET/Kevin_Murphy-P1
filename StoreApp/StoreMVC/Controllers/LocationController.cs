@@ -51,10 +51,8 @@ namespace StoreMVC.Controllers
         public ActionResult Create()
         {
          
-              
-           
                 return View("CreateLocation");
-            
+
         }
 
         // POST: LocationController/Create

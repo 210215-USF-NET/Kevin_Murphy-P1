@@ -23,6 +23,7 @@ namespace StoreMVC.Models
         [DisplayName("Product Description")]
         [Required]
         public string ProductDescription { get; set; }
+        public int LocationId { get; set;  }
 
     }
 }

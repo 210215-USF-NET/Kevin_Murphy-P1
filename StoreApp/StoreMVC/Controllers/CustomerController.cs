@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using StoreBL;
 using StoreDL;
 using StoreMVC.Models;
+using StoreModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
+using static System.Net.WebRequestMethods;
 
 namespace StoreMVC.Controllers
 {
@@ -14,6 +17,7 @@ namespace StoreMVC.Controllers
     {
         private IPartsBL _partsBL;
         private IMapper _mapper;
+        private Customer _customer;
         public CustomerController(IPartsBL partsBL,IMapper mapper)
         {
 
@@ -23,6 +27,7 @@ namespace StoreMVC.Controllers
         // GET: CustomerController
         public ActionResult Index()
         {
+              
             return View(_partsBL.GetCustomer().Select(customer => _mapper.cast2CustomerIndexVM(customer)).ToList());
         }
 
@@ -33,9 +38,31 @@ namespace StoreMVC.Controllers
         }
 
         // GET: CustomerController/Create
+        public ActionResult AddOrder(string number)
+        {
+            _customer = (_partsBL.GetCustomerByNumber(number));
+
+            return View();
+        }
+
+
+        public ActionResult Login(string number)
+        {
+            _customer = _partsBL.GetCustomerByNumber(number);
+            HttpContext.Session.SetString("customer", JsonSerializer.Serialize(_customer));
+            return RedirectToAction(nameof(Index));
+           
+        }
         public ActionResult Create()
         {
             return View("CreateCustomer");
+        }
+
+        public ActionResult ViewOrders(int Id)
+        {
+            List<Order> o = new List<Order>();
+            o = _partsBL.GetOrderByCustomerId(Id).ToList();
+            return View(o);
         }
 
         // POST: CustomerController/Create
