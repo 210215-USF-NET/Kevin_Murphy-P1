@@ -23,13 +23,14 @@ namespace StoreDL
 
         List<Location> GetLocations();
 
+        Customer GetCustomerById(int Id);
         Customer GetCustomerByNumber(string number);
         Product GetProductByName(string name);
         List<Product> GetProductByLocationId(int Id);
         Location GetLocationByName(string name);
-        Location GetLocationById(int? Id);
-        Product GetProductById(int? Id);
-        Customer GetCustomerById(int? Id);
+        Location GetLocationById(int Id);
+        Product GetProductById(int Id);
+  
         List<Item> GetLocationItems();
         Item GetItemByOID(int? Id);
         Location DeleteLocation(Location location2BDeleted);

@@ -29,7 +29,14 @@ namespace StoreMVC.Controllers
         // GET: OrderController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Order o = _partsBL.GetOrderById(id);
+            OrderDetailVM od = new OrderDetailVM();
+            od.CustomerName = _partsBL.GetCustomerById(o.CustomerId).CustomerName;
+            od.LocationName = _partsBL.GetLocationById(o.LocationId).LocationName;
+            od.ProductName = _partsBL.GetProductById(o.ProductId).ProductName;
+            od.Quanity = o.Quantity;
+            od.Total = o.Total;
+            return View(od);
         }
 
         // GET: OrderController/Create

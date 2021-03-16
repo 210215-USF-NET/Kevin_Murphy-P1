@@ -86,10 +86,7 @@ namespace StoreDL
                 .FirstOrDefault(customer => customer.Id == Id);
         }
 
-        public Customer GetCustomerById(int? Id)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Customer GetCustomerByNumber(string number)
         {
@@ -109,9 +106,9 @@ namespace StoreDL
                 .ToList();
         }
 
-        public Location GetLocationById(int? Id)
+        public Location GetLocationById(int Id)
         {
-            throw new NotImplementedException();
+            return _context.Locations.AsNoTracking().FirstOrDefault(location => location.Id ==Id);
         }
 
         public Location GetLocationByName(string name)
@@ -154,9 +151,9 @@ namespace StoreDL
             throw new NotImplementedException();
         }
 
-        public Product GetProductById(int? Id)
+        public Product GetProductById(int Id)
         {
-            throw new NotImplementedException();
+            return _context.Products.AsNoTracking().FirstOrDefault(product => product.Id == Id);
         }
 
         public List<Product> GetProductByLocationId(int Id)

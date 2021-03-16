@@ -10,6 +10,7 @@ namespace StoreMVC.Models
         public int LocationId { get; set; }
         public double Total { get; set; }
         public int CustomerId { get; set; }
+        public int OrderId { get; set; }
         
     }
 }
