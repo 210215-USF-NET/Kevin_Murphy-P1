@@ -13,30 +13,19 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <input asp-for="CustomerId" class="form-control" />
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
-            </div>
-            <div calss="form-group">
-                <label asp-for="CustomerId" class="control-label"  ></label>
-                <select name="Customer">
-                    
-                </select>
+                <label asp-for="CustomerNumber" class="control-label"></label>
+                <input asp-for="CustomerNumber" class="form-control" />
+                <span asp-validation-for="CustomerNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LocaitonId" class="control-label"></label>
-                <input asp-for="LocaitonId" class="form-control" />
-                <span asp-validation-for="LocaitonId" class="text-danger"></span>
+                <label asp-for="LocationName" class="control-label"></label>
+                <input asp-for="LocationName" class="form-control" />
+                <span asp-validation-for="LocationName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Total" class="control-label"></label>
-                <input asp-for="Total" class="form-control" />
-                <span asp-validation-for="Total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductId" class="control-label"></label>
-                <input asp-for="ProductId" class="form-control" />
-                <span asp-validation-for="ProductId" class="text-danger"></span>
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quantitiy" class="control-label"></label>
