@@ -33,6 +33,20 @@ namespace StoreMVC.Controllers
         }
 
         // GET: CustomerController/Details/5
+
+        public ActionResult OrderDetails(int id)
+        {
+            Order o = _partsBL.GetOrderById(id);
+            OrderDetailVM od = new OrderDetailVM();
+            od.CustomerName = _partsBL.GetCustomerById(o.CustomerId).CustomerName;
+            od.LocationName = _partsBL.GetLocationById(o.LocationId).LocationName;
+            od.ProductName = _partsBL.GetProductById(o.ProductId).ProductName;
+            od.Quanity = o.Quantity;
+            od.Total = o.Total;
+            return View(od);
+        }
+
+
         public ActionResult Details(string number)
         {
             return View(_mapper.cast2CustomerCRVM(_partsBL.GetCustomerByNumber(number)));
