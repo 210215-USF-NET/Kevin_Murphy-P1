@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StoreBL;
+using StoreModels;
 using StoreMVC.Models;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,13 @@ namespace StoreMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(OrderCRVM newOrder)
         {
+            newOrder.CustomerId = _partsBL.GetCustomerByNumber(newOrder.CustomerNumber).Id;
+            newOrder.LocaitonId = _partsBL.GetLocationByName(newOrder.LocationName).Id;
+            Product p = new Product();
+            p = _partsBL.GetProductByName(newOrder.ProductName);
+            newOrder.Total = p.Price * newOrder.Quantitiy;
+            newOrder.ProductId = p.Id;
+
             try
             {
                 _partsBL.AddOrder(_mapper.cast2Order(newOrder));
