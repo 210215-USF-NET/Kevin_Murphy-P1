@@ -7,7 +7,7 @@
     ViewData["Title"] = "ViewOrders";
 }
 
-<h1>ViewOrders</h1>
+<h1>View Orders</h1>
 
 <p>
     <a asp-action="AddOrder">Create New</a>
@@ -35,7 +35,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "OrderDetails", new {  id=item.Id  }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
