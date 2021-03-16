@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog;
 
 
 namespace StoreMVC.Controllers
@@ -51,6 +52,7 @@ namespace StoreMVC.Controllers
                 }
                 catch
                 {
+                    Log.Warning("Unable to create Product");
                     return RedirectToAction(nameof(Index));
                 }
 

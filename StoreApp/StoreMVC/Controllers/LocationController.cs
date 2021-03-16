@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace StoreMVC.Controllers
 {
@@ -65,10 +66,12 @@ namespace StoreMVC.Controllers
                 try
                 {
                     _partsBL.AddLocation(_mapper.cast2Location(newLocation));
+                    Log.Information($"Creation of new location");
                     return RedirectToAction(nameof(Index));
                 }
                 catch
                 {
+                    Log.Warning("Unable to create new Location");
                     return View();
                 }
             }

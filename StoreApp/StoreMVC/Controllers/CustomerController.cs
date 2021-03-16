@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
 using static System.Net.WebRequestMethods;
+using Serilog;
 
 namespace StoreMVC.Controllers
 {
@@ -43,6 +44,7 @@ namespace StoreMVC.Controllers
             od.ProductName = _partsBL.GetProductById(o.ProductId).ProductName;
             od.Quanity = o.Quantity;
             od.Total = o.Total;
+            Log.Information($"getting{od}");
             return View(od);
         }
 
@@ -65,6 +67,7 @@ namespace StoreMVC.Controllers
         {
             _customer = _partsBL.GetCustomerByNumber(number);
             HttpContext.Session.SetString("customer", JsonSerializer.Serialize(_customer));
+            Log.Information($"{_customer} logged in");
             return RedirectToAction(nameof(Index));
            
         }
