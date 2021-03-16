@@ -18,6 +18,7 @@ namespace StoreMVC.Controllers
         private IPartsBL _partsBL;
         private IMapper _mapper;
         private Customer _customer;
+        public Customer c;
         public CustomerController(IPartsBL partsBL,IMapper mapper)
         {
 
@@ -38,12 +39,12 @@ namespace StoreMVC.Controllers
         }
 
         // GET: CustomerController/Create
-        public ActionResult AddOrder(string number)
+       /* public ActionResult AddOrder(string number)
         {
             _customer = (_partsBL.GetCustomerByNumber(number));
 
             return View();
-        }
+        }*/
 
 
         public ActionResult Login(string number)
@@ -63,6 +64,39 @@ namespace StoreMVC.Controllers
             List<Order> o = new List<Order>();
             o = _partsBL.GetOrderByCustomerId(Id).ToList();
             return View(o);
+        }
+        public ActionResult AddOrder(string number)
+        {
+            c = _partsBL.GetCustomerByNumber(number);
+            HttpContext.Session.SetString("OrderingCustomer", JsonSerializer.Serialize(c));
+            return View("PlaceOrder");
+        }
+        public ActionResult PlaceOrder(OrderCRVM newOrder)
+        {
+          
+            if (ModelState.IsValid)
+            {
+                
+                newOrder.CustomerId = _partsBL.GetCustomerByNumber(newOrder.CustomerNumber).Id;
+                newOrder.LocaitonId = _partsBL.GetLocationByName(newOrder.LocationName).Id;
+                Product p = new Product();
+                p = _partsBL.GetProductByName(newOrder.ProductName);
+                newOrder.Total = p.Price * newOrder.Quantitiy;
+                newOrder.ProductId = p.Id;
+                try
+                {
+                    _partsBL.AddOrder(_mapper.cast2Order(newOrder));
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // POST: CustomerController/Create

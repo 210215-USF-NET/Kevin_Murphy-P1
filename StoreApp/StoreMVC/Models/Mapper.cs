@@ -109,7 +109,9 @@ namespace StoreMVC.Models
             {
                 CustomerId = order2BCasted.CustomerId,
                 LocationId = order2BCasted.LocationId,
-                Total  = order2BCasted.Total
+                Total  = order2BCasted.Total,
+                OrderId = order2BCasted.Id
+                
             };
         }
 
@@ -152,6 +154,13 @@ namespace StoreMVC.Models
 
             };
         }
+
+        /* public OrderDetailVM cast2Detail(Order castOrder)
+        {
+            return new OrderDetailVM{
+                CustomerName = cast2Customer.
+            };
+        }*/
     }
 
 }
