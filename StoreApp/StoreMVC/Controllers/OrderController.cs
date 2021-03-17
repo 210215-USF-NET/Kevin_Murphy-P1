@@ -92,7 +92,11 @@ namespace StoreMVC.Controllers
         // GET: OrderController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Order p = new Order();
+            p = _partsBL.GetOrderById(id);
+            _partsBL.DeleteOrder(_partsBL.GetOrderById(id));
+            
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: OrderController/Delete/5

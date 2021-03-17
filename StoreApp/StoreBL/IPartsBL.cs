@@ -7,6 +7,7 @@ namespace StoreBL
         List<Customer> GetCustomer();
         List<Order> GetOrder();
         List<Order> GetOrderByCustomerId(int Id);
+        List<Order> GetOrderByLocationId(int Id);
         Order GetOrderById(int Id);
         List<Location> GetLocation();
         List<Product> GetProduct();
@@ -34,6 +35,7 @@ namespace StoreBL
         Item GetItemByOID(int Id);
         Product DeleteProduct(Product product2BDeleted);
         Location DeleteLocation(Location location2BDeleted);
+        Order DeleteOrder(Order order2BDeleted);
         List<Orderline> GetOrderline();
 
     }

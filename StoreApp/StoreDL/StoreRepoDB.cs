@@ -68,6 +68,12 @@ namespace StoreDL
             _context.SaveChanges();
             return product2BDeleted;
         }
+        public Order DeleteOrder(Order order2BDeleted)
+        {
+            _context.Orders.Remove(order2BDeleted);
+            _context.SaveChanges();
+            return order2BDeleted;
+        }
 
         public List<Customer> GetCustomer()
         {
@@ -139,6 +145,11 @@ namespace StoreDL
         public Order GetOrderById(int Id)
         {
             return _context.Orders.AsNoTracking().FirstOrDefault(order => order.Id == Id);
+        }
+
+        public List<Order> GetOrderByLocationId(int Id) 
+        {
+            return _context.Orders.AsNoTracking().Where(order => order.LocationId == Id).ToList();
         }
 
         public List<Orderline> GetOrderline()
