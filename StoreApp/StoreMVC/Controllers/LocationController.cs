@@ -23,31 +23,55 @@ namespace StoreMVC.Controllers
             _mapper = mapper;
         }
         // GET: LocationController
+        /// <summary>
+        /// Show all the locations that exist
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View(_partsBL.GetLocation().Select(location => _mapper.cast2LocationIndexVM(location)).ToList());
         }
 
         // GET: LocationController/Details/5
+        /// <summary>
+        /// view the details of the specific locations 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public ActionResult Details(string name)
         {
             return View(_mapper.cast2LocationCRVM(_partsBL.GetLocationByName(name)));
         }
 
         //products view for a given location
+        /// <summary>
+        /// View the products of the locations 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public ActionResult Products(int Id)
         {
             List<Product> l = new List<Product>();
             l = _partsBL.GetproductByLocationId(Id).ToList();
             return View(l);
         }
+
+        /// <summary>
+        /// view the orders of the based on the specific location
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public ActionResult ViewOrders(int Id)
         {
             List<Order> o = new List<Order>();
             o = _partsBL.GetOrderByLocationId(Id).ToList();
             return View(o);
         }
-
+        /// <summary>
+        /// view the details of the orders that have been placed at that specific location
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult OrderDetails(int id)
         {
             Order o = _partsBL.GetOrderById(id);
@@ -76,6 +100,13 @@ namespace StoreMVC.Controllers
 
         }
 
+
+        /// <summary>
+        /// Creation of new locations 
+        /// log what the new locations that is being created
+        /// </summary>
+        /// <param name="newLocation"></param>
+        /// <returns></returns>
         // POST: LocationController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -123,6 +154,11 @@ namespace StoreMVC.Controllers
         }
 
         // GET: LocationController/Delete/5
+        /// <summary>
+        /// addition of the delete functions based on the name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public ActionResult Delete(string name)
         {
             _partsBL.DeleteLocation(_partsBL.GetLocationByName(name));

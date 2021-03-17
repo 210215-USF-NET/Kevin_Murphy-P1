@@ -21,12 +21,21 @@ namespace StoreMVC.Controllers
             _mapper = mapper;
         }
         // GET: OrderController
+        /// <summary>
+        /// index to view all of the orders that have been placed with the system
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View(_partsBL.GetOrder().Select( order => _mapper.cast2OrderIndexVM(order)).ToList());
         }
 
         // GET: OrderController/Details/5
+        /// <summary>
+        /// View the details of specific orders(lcoation,Customer,Total,producsts, quantity)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Details(int id)
         {
             Order o = _partsBL.GetOrderById(id);
@@ -46,6 +55,11 @@ namespace StoreMVC.Controllers
         }
 
         // POST: OrderController/Create
+        /// <summary>
+        /// create new orders
+        /// </summary>
+        /// <param name="newOrder"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(OrderCRVM newOrder)
@@ -90,6 +104,12 @@ namespace StoreMVC.Controllers
         }
 
         // GET: OrderController/Delete/5
+
+        /// <summary>
+        /// deletion of orders
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Delete(int id)
         {
             Order p = new Order();
