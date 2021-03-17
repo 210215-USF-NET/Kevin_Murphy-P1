@@ -15,7 +15,7 @@ namespace StoreMVC
         public static void Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-                .WriteTo.File("Logs/Log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File("../logs/Log.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
             Log.Information("Program Run");
             CreateHostBuilder(args).Build().Run();
