@@ -16,6 +16,7 @@ namespace StoreDL
         Item AddIO(Item I);
         List<Order> GetOrder();
         List<Order> GetOrderByCustomerId(int Id);
+        List<Order> GetOrderByLocationId(int Id);
         Order GetOrderById(int Id);
         List<Location> GetLocation();
         List<Product> GetProduct();
@@ -35,6 +36,7 @@ namespace StoreDL
         Item GetItemByOID(int? Id);
         Location DeleteLocation(Location location2BDeleted);
         Product DeleteProduct(Product product2BDeleted);
+        Order DeleteOrder(Order order2BDeleted);
         List<Orderline> GetOrderline();
 
         // Order AddProduct(Product newProduct);

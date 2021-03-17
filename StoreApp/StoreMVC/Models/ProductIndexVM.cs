@@ -18,5 +18,7 @@ namespace StoreMVC.Models
         //public string ID { get; set; }
         [DisplayName("Product Description")]
         public string ProductDescription { get; set; }
+
+
     }
 }

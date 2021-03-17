@@ -42,8 +42,8 @@
                 @* @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                 @Html.ActionLink("Orders", "ViewOrders", new { Id = item.CustomerId }) |
                 @Html.ActionLink("Place Order","AddOrder",new { number = item.PhoneNumber}) |
-                @Html.ActionLink("Details", "Details", new { number = item.PhoneNumber }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Details", "Details", new { number = item.PhoneNumber }) @*|
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
 }

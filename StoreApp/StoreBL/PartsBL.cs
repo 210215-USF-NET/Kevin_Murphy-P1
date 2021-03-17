@@ -145,6 +145,16 @@ namespace StoreBL
         {
             return _repo.GetOrderline();
         }
+
+        public List<Order> GetOrderByLocationId(int Id)
+        {
+            return _repo.GetOrderByLocationId(Id);
+        }
+
+        public Order DeleteOrder(Order order2BDeleted)
+        {
+            return _repo.DeleteOrder(order2BDeleted);
+        }
     }
 
 }

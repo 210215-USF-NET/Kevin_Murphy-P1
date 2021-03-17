@@ -41,6 +41,26 @@ namespace StoreMVC.Controllers
             l = _partsBL.GetproductByLocationId(Id).ToList();
             return View(l);
         }
+        public ActionResult ViewOrders(int Id)
+        {
+            List<Order> o = new List<Order>();
+            o = _partsBL.GetOrderByLocationId(Id).ToList();
+            return View(o);
+        }
+
+        public ActionResult OrderDetails(int id)
+        {
+            Order o = _partsBL.GetOrderById(id);
+            OrderDetailVM od = new OrderDetailVM();
+            od.CustomerName = _partsBL.GetCustomerById(o.CustomerId).CustomerName;
+            od.LocationName = _partsBL.GetLocationById(o.LocationId).LocationName;
+            od.ProductName = _partsBL.GetProductById(o.ProductId).ProductName;
+            od.Quanity = o.Quantity;
+            od.Total = o.Total;
+            Log.Information($"getting{od}");
+            return View(od);
+        }
+
 
         private void ToList()
         {
