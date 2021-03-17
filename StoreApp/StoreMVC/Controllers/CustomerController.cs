@@ -14,6 +14,11 @@ using Serilog;
 
 namespace StoreMVC.Controllers
 {
+    /// <summary>
+    ///  Customer Controller that allows for the passing of data to Customer views
+    ///  Allows for the creation of Customers 
+    ///  Login as as different customers
+    /// </summary>
     public class CustomerController : Controller
     {
         private IPartsBL _partsBL;
