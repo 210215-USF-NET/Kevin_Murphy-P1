@@ -17,7 +17,10 @@ namespace StoreMVC.Controllers
         {
             _logger = logger;
         }
-
+        /// <summary>
+        /// Home view Index
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return View();

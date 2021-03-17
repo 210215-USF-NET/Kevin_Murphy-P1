@@ -39,9 +39,14 @@ namespace StoreMVC.Controllers
         }
 
         // GET: CustomerController/Details/5
-
+        /// <summary>
+        /// This Action allows the user to see the orders based on the customer
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult OrderDetails(int id)
         {
+            
             Order o = _partsBL.GetOrderById(id);
             OrderDetailVM od = new OrderDetailVM();
             od.CustomerName = _partsBL.GetCustomerById(o.CustomerId).CustomerName;
@@ -53,7 +58,11 @@ namespace StoreMVC.Controllers
             return View(od);
         }
 
-
+        /// <summary>
+        /// Allows the user to see the Customer details based on the user number
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public ActionResult Details(string number)
         {
             return View(_mapper.cast2CustomerCRVM(_partsBL.GetCustomerByNumber(number)));
@@ -67,7 +76,11 @@ namespace StoreMVC.Controllers
             return View();
         }*/
 
-
+        /// <summary>
+        /// allows for the log in of the potential customer
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public ActionResult Login(string number)
         {
             _customer = _partsBL.GetCustomerByNumber(number);
@@ -93,6 +106,11 @@ namespace StoreMVC.Controllers
             HttpContext.Session.SetString("OrderingCustomer", JsonSerializer.Serialize(c));
             return View("PlaceOrder");
         }
+        /// <summary>
+        /// allows for the placing of new orders from the customer profile
+        /// </summary>
+        /// <param name="newOrder"></param>
+        /// <returns></returns>
         public ActionResult PlaceOrder(OrderCRVM newOrder)
         {
           
@@ -122,6 +140,12 @@ namespace StoreMVC.Controllers
         }
 
         // POST: CustomerController/Create
+
+        /// <summary>
+        /// allows for the creation of the newCustomer
+        /// </summary>
+        /// <param name="newCustomer"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CustomerCRVM newCustomer)
@@ -171,6 +195,13 @@ namespace StoreMVC.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// allows for the ability of deletion of custoemrs
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="collection"></param>
+        /// <returns></returns>
 
         // POST: CustomerController/Delete/5
         [HttpPost]
